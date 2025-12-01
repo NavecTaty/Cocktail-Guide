@@ -8,5 +8,3 @@ define('DB_NAME', 'recettesbd'); //notre base de données
 define('DB_USER','root');// root utilisateur par défaut de Mysql
 define('DB_PASS','');//pas de mot de passe
 define('DB_CHARSET', 'utf8mb4');//encodage
-
-
