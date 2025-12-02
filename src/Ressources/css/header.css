@@ -1,0 +1,41 @@
+/* Style du header */
+.header {
+    background-color: #f5e6e8; /* rose très clair */
+    color: #5a3e36; /* beige foncé pour le texte */
+    text-align: center;
+    padding: 20px;
+    border-bottom: 2px solid #d8b6b6; /* séparation douce */
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 36px;
+    font-family: Arial, sans-serif;
+}
+
+.header nav {
+    margin-top: 10px;
+}
+
+.header nav a {
+    color: #5a3e36; /* beige foncé */
+    text-decoration: none;
+    margin: 0 15px; /* espace entre les liens */
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.header nav a:hover {
+    color: #c79aa3; /* rose foncé au survol */
+    text-decoration: underline;
+}
+
+.header hr {
+    margin-top: 15px;
+    border: 0;
+    border-top: 2px solid #d8b6b6;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+

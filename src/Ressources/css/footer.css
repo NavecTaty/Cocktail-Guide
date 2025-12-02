@@ -1,0 +1,9 @@
+footer {
+    background-color: #f5e6e8; /* rose très clair, assorti au header */
+    color: #5a3e36;             /* texte beige foncé */
+    text-align: center;
+    padding: 20px;
+    border-top: 2px solid #d8b6b6; /* ligne de séparation douce */
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}

@@ -1,0 +1,49 @@
+.inscription-container {
+    background-color: #fff0f5; /* rose pâle */
+    padding: 30px;
+    max-width: 500px;
+    margin: 40px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: black; /* texte noir */
+}
+
+.inscription-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #5a3e36; /* beige foncé pour le titre */
+}
+
+.inscription-container form {
+    display: flex;
+    flex-direction: column; /* chaque champ sur sa propre ligne */
+}
+
+.inscription-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.inscription-container input {
+    padding: 10px;
+    margin-bottom: 20px; /* espace entre les champs */
+    border-radius: 5px;
+    border: 1px solid #d8b6b6; /* rose clair */
+    font-size: 14px;
+}
+
+.inscription-container button {
+    padding: 12px;
+    background-color: #d8b6b6; /* rose pâle */
+    color: #5a3e36;             /* texte beige foncé */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.inscription-container button:hover {
+    background-color: #c79aa3; /* rose foncé au survol */
+}

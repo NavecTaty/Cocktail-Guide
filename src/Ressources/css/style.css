@@ -1,0 +1,19 @@
+.recherche-container {
+    background-image: url('../Photos/cocktails.jpg'); 
+    background-size: cover;     
+    background-position: center; 
+    padding: 50px;               
+    text-align: center;           
+}
+
+.recherche-container input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+}
+
+.recherche-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

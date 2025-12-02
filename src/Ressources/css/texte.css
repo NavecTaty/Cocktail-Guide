@@ -1,0 +1,32 @@
+/* Style pour la zone de texte */
+.texte {
+    background-color: #fff0f5;
+    color: #5a3e36;           
+    padding: 30px;
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;         
+    font-family: Arial, sans-serif;
+}
+
+.texte p:first-child {
+    font-size: 28px;           
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.texte p:not(:first-child) {
+    font-size: 16px;           /* texte principal */
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.texte p:last-child {
+    font-style: italic;        /* dernier paragraphe en italique */
+    text-align: center;
+}
+
+
