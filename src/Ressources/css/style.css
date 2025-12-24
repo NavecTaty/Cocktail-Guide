@@ -1,19 +1,16 @@
+.recherche-wrapper {
+    display: flex;
+    justify-content: center; 
+    gap: 20px; /
+}
+
 .recherche-container {
     background-image: url('../Photos/cocktails.jpg'); 
     background-size: cover;     
     background-position: center; 
     padding: 50px;               
     text-align: center;           
+    flex: 1;         
+    min-width: 300px;  
 }
 
-.recherche-container input[type="text"] {
-    padding: 10px;
-    width: 300px;
-    font-size: 16px;
-}
-
-.recherche-container button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}

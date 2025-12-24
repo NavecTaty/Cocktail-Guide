@@ -1,5 +1,8 @@
-  <!--Verifications des données -->
+
 <?php
+/**
+ * Formulaire d'inscription  et verification des données
+ */
 $champsIncorrects = [];
 $valide = true;
 if (isset($_POST['submit'])) {
@@ -79,7 +82,7 @@ if (isset($_POST['submit'])) {
         echo "Création du compte réussi";
         //INSERTION DANS LA BASES DE DONNées
 
-        //On repartà la page d'acceuil
+        //On repart à la page d'acceuil
     }
 
 
@@ -146,4 +149,5 @@ if (isset($_POST['submit'])) {
 
 </form>
 </div>
+<!-- insertion dans la base de données-->
 
