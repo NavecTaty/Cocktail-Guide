@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/Cocktail-Guide//src/Ressources/css/footer.css">
      <link rel="stylesheet" href="/Cocktail-Guide//src/Ressources/css/texte.css">
     <link rel="stylesheet" href="/Cocktail-Guide//src/Ressources/css/profil1.css">
+     <link rel="stylesheet" href="/Cocktail-Guide//src/Ressources/css/hierarchie.css">
 
 
 
