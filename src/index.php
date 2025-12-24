@@ -9,7 +9,9 @@ $page = $_GET['page'] ?? 'accueil';
 // pages autorisées
 $pagesAutorisees = [
     'accueil',
-    'profil'
+    'profil',
+    'inscription', 
+    'modification'
 ];
 
 if (!in_array($page, $pagesAutorisees)) {
