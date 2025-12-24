@@ -1,5 +1,5 @@
 
-     <?php include('../include/header.php'); ?>
+     <?php include __DIR__ .'/../include/header.php'; ?>
     <div class= "recherche-container">
         <form action="recherche.php" method="GET">
             <input type="text" name="q" placeholder="Rechercher: cocktails , ingrédiants..." required>
@@ -14,6 +14,6 @@
         <p>Découvrez quelques de nos recettes et boissons</p>
 </div>
 
-    <?php include('../include/footer.php'); ?>
+    <?php include __DIR__ .'/../include/footer.php'; ?>
 </body>
 </html>
