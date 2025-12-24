@@ -1,13 +1,13 @@
-<?php include('../include/header.php'); ?>
+<?php include __DIR__ .'/../include/header.php'; ?>
 <div class="page">
     <aside class="sidebar">
-        <?php include ('../include/hierarchie.php'); ?>
+        <?php include __DIR__ .'/hierarchie.php'; ?>
     </aside>
 
     <main class="contenu">
-        <?php include ('../include/main.php'); ?>
+        <?php include __DIR__ .'/main.php'; ?>
     </main>
 </div>
-    <?php include('../include/footer.php'); ?>
+    <!-- <?php include __DIR__ .'/../include/footer.php'; ?> -->
 </body>
 </html>

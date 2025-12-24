@@ -115,7 +115,7 @@ function getToutesLesSousCategories($idAliment) {
         $resultat[] = $a['nom'];
         $resultat = array_merge(
             $resultat,
-            getTousLesSousCategories($a['id_aliment'])
+            getToutesLesSousCategories($a['id_aliment'])
         );
     }
 
@@ -134,7 +134,7 @@ function getAllRecettesParHierarchie($id_Aliment) {
 
     $recettes = [];
     foreach ($noms as $nom) {
-        foreach (getRecettesByAlimentNom($nom) as $r) {
+        foreach (getRecettesByAliment($nom) as $r) {
             $recettes[$r['id_recette']] = $r; // éviter doublons
         }
     }

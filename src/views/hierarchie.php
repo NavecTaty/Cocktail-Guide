@@ -1,120 +1,80 @@
 <?php
-/**
- * Vue : hiérarchie des aliments (gauche)
- * 
- */
-
 require_once __DIR__ . '/../models/aliment.php';
-require_once __DIR__ . '/../models/recette.php'; // pour la partie droite
+require_once __DIR__ . '/../models/recette.php';
 
-// Aliment sélectionné
-$alimentSelectionne = null;
-if (isset($_GET['aliment'])) {
-    $alimentSelectionne = getAlimentByName($_GET['aliment']);
-}
 
-/**
- * Affichage récursif de la hiérarchie (dépliage progressif)
- */
-function afficherHierarchie($aliment, $alimentSelectionne)
-{
-    $sousCategories = getSousCategories($aliment['id_aliment']);
+if (!isset($_GET['id'])) {
+    $alimentCourant = null;
+    $chemin = [];
+    $sousCategories = getRacine();
+    $recettes = [];
+} else {
+    $id = (int) $_GET['id'];
+    $alimentCourant = getAlimentById($id);
 
-    if (empty($sousCategories)) {
-        return;
+    if (!$alimentCourant) {
+        die("Aliment introuvable");
     }
 
-    echo '<ul>';
-
-    foreach ($sousCategories as $sous) {
-
-        echo '<li>';
-        echo '<a href="?aliment=' . urlencode($sous['nom']) . '">';
-        echo htmlspecialchars($sous['nom']);
-        echo '</a>';
-
-        // Déplier uniquement le chemin sélectionné
-        if (
-            $alimentSelectionne &&
-            $sous['id_aliment'] == $alimentSelectionne['id_aliment']
-        ) {
-            afficherHierarchie($sous, $alimentSelectionne);
-        }
-
-        echo '</li>';
-    }
-
-    echo '</ul>';
+    $chemin = getCheminHierarchique($id);
+    $sousCategories = getSousCategories($id);
+    $recettes = getAllRecettesParHierarchie($id);
 }
+
+include __DIR__ . '/../include/header.php';
 ?>
 
-<div class="page">
+<?php if (!empty($chemin)): ?>
+<nav class="breadcrumb">
+    <?php foreach ($chemin as $i => $a): ?>
+        <a href="index.php?page=hierarchie&id=<?= $a['id_aliment'] ?>">
+            <?= htmlspecialchars($a['nom']) ?>
+        </a>
+        <?php if ($i < count($chemin) - 1): ?> &gt; <?php endif; ?>
+    <?php endforeach; ?>
+</nav>
+<?php endif; ?>
 
-    <!-- COLONNE GAUCHE : HIÉRARCHIE -->
-    <aside class="hierarchie">
-        <h3>Aliments</h3>
+<div class="page-hierarchie" style="display:flex; gap:20px; margin-top:15px;">
 
-        <?php
-        $aliments = getAllAliments();
+    <aside class="menu" style="width:260px;">
+        <h3>
+            <?= $alimentCourant ? "Sous-catégories de " . htmlspecialchars($alimentCourant['nom']) : "Catégories" ?>
+        </h3>
 
-        foreach ($aliments as $aliment) {
-
-            // racines = pas de super-catégorie
-            if (!empty(getSuperCategories($aliment['id_aliment']))) {
-                continue;
-            }
-
-            echo '<div>';
-            echo '<a href="?aliment=' . urlencode($aliment['nom']) . '">';
-            echo htmlspecialchars($aliment['nom']);
-            echo '</a>';
-
-            // Déplier seulement si racine sélectionnée
-            if (
-                $alimentSelectionne &&
-                $alimentSelectionne['id_aliment'] == $aliment['id_aliment']
-            ) {
-                afficherHierarchie($aliment, $alimentSelectionne);
-            }
-
-            echo '</div>';
-        }
-        ?>
+        <?php if (empty($sousCategories)): ?>
+            <p>Aucune sous-catégorie.</p>
+        <?php else: ?>
+            <ul>
+                <?php foreach ($sousCategories as $cat): ?>
+                    <li>
+                        <a href="index.php?page=hierarchie&id=<?= $cat['id_aliment'] ?>">
+                            <?= htmlspecialchars($cat['nom']) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
     </aside>
 
-    <!-- COLONNE DROITE : RECETTES -->
-    <main class="contenu">
-        <?php if ($alimentSelectionne): ?>
-            <h2><?= htmlspecialchars($alimentSelectionne['nom']) ?></h2>
+    <main class="recettes" style="flex:1;">
+        <h2>Recettes <?= $alimentCourant ? "avec " . htmlspecialchars($alimentCourant['nom']) : "" ?></h2>
 
-            <?php
-            $recettes = getRecettesByAliment($alimentSelectionne['nom']);
-            ?>
-
-            <?php if (empty($recettes)): ?>
-                <p>Aucune recette pour cet aliment.</p>
-            <?php else: ?>
-                <?php foreach ($recettes as $recette): ?>
-                    <article>
-                        <h3><?= htmlspecialchars($recette['titre']) ?></h3>
-
-                        <?php if (!empty($recette['photo'])): ?>
-                            <img src="<?= htmlspecialchars($recette['photo']) ?>" alt="">
-                        <?php endif; ?>
-
-                        <p><?= nl2br(htmlspecialchars($recette['preparation'])) ?></p>
-                    </article>
-                <?php endforeach; ?>
-            <?php endif; ?>
-
+        <?php if (empty($recettes)): ?>
+            <p>Aucune recette à afficher.</p>
         <?php else: ?>
-            <h2>Sélectionnez un aliment</h2>
+            <ul>
+                <?php foreach ($recettes as $r): ?>
+                    <li>
+                        <a href="index.php?page=recettes&id=<?= $r['id_recette'] ?>">
+                            <?= htmlspecialchars($r['titre']) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         <?php endif; ?>
     </main>
 
 </div>
 
-
-
-
-
+<?php include __DIR__ . '/../include/footer.php'; ?>

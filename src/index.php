@@ -11,7 +11,10 @@ $pagesAutorisees = [
     'accueil',
     'profil',
     'inscription', 
-    'modification'
+    'modification',
+    'connexion',
+    'recettes',
+    'hierarchie'
 ];
 
 if (!in_array($page, $pagesAutorisees)) {
