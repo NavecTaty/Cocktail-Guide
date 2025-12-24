@@ -83,3 +83,79 @@ function getSuperCategories($id_aliment){
     return $stmtAliment->fetchAll(PDO::FETCH_ASSOC);
    
 }
+/**
+ * Récupère la hierarchie d'un aliment
+ */
+function getCheminHierarchique($id_Aliment) {
+    $chemin = [];
+
+    $courant = getAlimentById($id_Aliment);
+
+    while ($courant) {
+        array_unshift($chemin, $courant);
+
+        $parents = getSuperCategories($courant['id_aliment']);
+        if (empty($parents)) {
+            break;
+        }
+        // On prend le premier parent
+        $courant = $parents[0];
+    }
+
+    return $chemin;
+}
+/**
+ * Récupère toutes les sous-catégories 
+ */
+function getToutesLesSousCategories($idAliment) {
+    $resultat = [];
+    $sous = getSousCategories($idAliment);
+
+    foreach ($sous as $a) {
+        $resultat[] = $a['nom'];
+        $resultat = array_merge(
+            $resultat,
+            getTousLesSousCategories($a['id_aliment'])
+        );
+    }
+
+    return $resultat;
+}
+/**
+ * Récupère toutes les recettes pour un aliment et ses descendants
+ */
+function getAllRecettesParHierarchie($id_Aliment) {
+    $aliment = getAlimentById($id_Aliment);
+    if (!$aliment) return [];
+
+    // aliment courant + descendants
+    $noms = [$aliment['nom']];
+    $noms = array_merge($noms, getToutesLesSousCategories($id_Aliment));
+
+    $recettes = [];
+    foreach ($noms as $nom) {
+        foreach (getRecettesByAlimentNom($nom) as $r) {
+            $recettes[$r['id_recette']] = $r; // éviter doublons
+        }
+    }
+
+    return array_values($recettes);
+}
+/**
+ * Récupère la racine de la hierarchie
+ */
+function getRacine() {
+    global $access;
+
+    $alimentSQL = (" SELECT *
+                FROM aliments
+                 WHERE id_aliment NOT IN (
+                SELECT id_sous_categorie FROM hierarchie
+                 )
+                ORDER BY nom
+    ");
+
+    $stmtAliment = $access->prepare($alimentSQL);
+    $stmtAliment->execute();
+    return $stmtAliment->fetchAll(PDO::FETCH_ASSOC);
+}
