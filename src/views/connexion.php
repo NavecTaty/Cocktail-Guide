@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'login' => $user['login']
         ];
 
-        header('Location: index.php?page=hierarchie');
+        header('Location: index.php?page=modification');
         exit;
     } else {
         $erreur = "Login ou mot de passe incorrect";

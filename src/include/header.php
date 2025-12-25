@@ -9,6 +9,7 @@
      <link rel="stylesheet" href="/Cocktail-Guide//src/Ressources/css/texte.css">
     <link rel="stylesheet" href="/Cocktail-Guide//src/Ressources/css/profil1.css">
      <link rel="stylesheet" href="/Cocktail-Guide//src/Ressources/css/hierarchie.css">
+    <link rel="stylesheet" href="/Cocktail-Guide//src/Ressources/css/modification.css">
 
 
 
@@ -21,6 +22,9 @@
         <a href= "index.php?page=recettes">Recettes</a>
         <a href= "index.php?page=favoris">Favoris</a>
         <a href= "index.php?page=profil">profil</a>
+        <?php if (isset($_SESSION['user'])): ?>
+         <a href="index.php?page=deconnexion">Se déconnecter</a>
+        <?php endif; ?>
     </nav>
     <hr>
 </header>

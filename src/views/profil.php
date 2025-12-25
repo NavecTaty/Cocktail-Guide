@@ -1,8 +1,8 @@
- <?php include __DIR__ .'/../include/header.php'; ?>
+
 <?php
 
 // Si l'utilisateur est déjà connecté → page modification
-if(isset($_SESSION['user_id'])){
+if(isset($_SESSION['user'])){
     include __DIR__ .'/modification.php'; // afficher le formulaire de modification
 }
 // Sinon si un cookie ou info pour reconnaitre utilisateur existe → page connexion
@@ -11,6 +11,5 @@ else {
 }
 ?>
  
- <?php include __DIR__ .'/../include/footer.php'; ?>
 </body>
 </html>

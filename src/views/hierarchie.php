@@ -21,7 +21,6 @@ if (!isset($_GET['id'])) {
     $recettes = getAllRecettesParHierarchie($id);
 }
 
-include __DIR__ . '/../include/header.php';
 ?>
 
 <?php if (!empty($chemin)): ?>
@@ -104,5 +103,3 @@ include __DIR__ . '/../include/header.php';
     </main>
 
 </div>
-
-<?php include __DIR__ . '/../include/footer.php'; ?>

@@ -15,31 +15,13 @@ if (isset($_POST['submit'])) {
     $valide = true;
     $champsIncorrects = [];
 
-    if (empty($_POST['sexe']) || !in_array($_POST['sexe'], ['f', 'h'])) {
-        $champsIncorrects[] = 'sexe';
-        $valide = false;
-    }
-
-    if (empty($_POST['nom']) || strlen(trim($_POST['nom'])) < 2) {
-        $champsIncorrects[] = 'nom';
-        $valide = false;
-    }
-
-    if (empty($_POST['prenom']) || strlen(trim($_POST['prenom'])) < 2) {
-        $champsIncorrects[] = 'prenom';
-        $valide = false;
-    }
-
-    if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $champsIncorrects[] = 'email';
-        $valide = false;
-    }
-
+    /* LOGIN obligatoire */
     if (empty($_POST['login'])) {
         $champsIncorrects[] = 'login';
         $valide = false;
     }
 
+    /* MOT DE PASSE obligatoire */
     if (
         empty($_POST['motdepasse']) ||
         empty($_POST['confirmer']) ||
@@ -49,6 +31,31 @@ if (isset($_POST['submit'])) {
         $valide = false;
     }
 
+    /* EMAIL facultatif mais valide si renseigné */
+    if (!empty($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $champsIncorrects[] = 'email';
+        $valide = false;
+    }
+
+    /* SEXE facultatif */
+    if (!empty($_POST['sexe']) && !in_array($_POST['sexe'], ['f', 'h'])) {
+        $champsIncorrects[] = 'sexe';
+        $valide = false;
+    }
+
+    /* NOM facultatif */
+    if (!empty($_POST['nom']) && strlen(trim($_POST['nom'])) < 2) {
+        $champsIncorrects[] = 'nom';
+        $valide = false;
+    }
+
+    /* PRÉNOM facultatif */
+    if (!empty($_POST['prenom']) && strlen(trim($_POST['prenom'])) < 2) {
+        $champsIncorrects[] = 'prenom';
+        $valide = false;
+    }
+
+    /* DATE DE NAISSANCE facultative */
     if (!empty($_POST['ddn'])) {
         $parts = explode('-', $_POST['ddn']);
         if (count($parts) !== 3 || !checkdate((int)$parts[1], (int)$parts[2], (int)$parts[0])) {
@@ -57,11 +64,13 @@ if (isset($_POST['submit'])) {
         }
     }
 
+    /* CODE POSTAL facultatif */
     if (!empty($_POST['cp']) && !preg_match('/^\d{5}$/', $_POST['cp'])) {
         $champsIncorrects[] = 'cp';
         $valide = false;
     }
 
+    /* TÉLÉPHONE facultatif */
     if (!empty($_POST['telephone']) && !preg_match('/^\d{10}$/', $_POST['telephone'])) {
         $champsIncorrects[] = 'telephone';
         $valide = false;
@@ -96,9 +105,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
-/*AFFICHAGE */
-
-include __DIR__ . '/../include/header.php';
+/* AFFICHAGE */
 ?>
 
 <div class="inscription-container"> 
@@ -106,13 +113,14 @@ include __DIR__ . '/../include/header.php';
 
     <?php if (!empty($erreurs)) : ?>
         <div style="color:red;">
-            <?php foreach ($erreurs as $e) echo "<p>$e</p>"; ?>
+            <?php foreach ($erreurs as $e): ?>
+                <p><?= htmlspecialchars($e, ENT_QUOTES) ?></p>
+            <?php endforeach; ?>
         </div>
     <?php endif; ?>
 
-    <form action="#" method="POST">
-
-        <label>Nom :
+    <form method="POST">
+                <label>Nom :
             <?php if (in_array('nom', $champsIncorrects)) echo "<span style='color:red;'> minimum 2 lettres</span>"; ?>
         </label><br>
         <input type="text" name="nom" value="<?= htmlspecialchars($_POST['nom'] ?? '', ENT_QUOTES) ?>"><br><br>
@@ -127,18 +135,18 @@ include __DIR__ . '/../include/header.php';
         <input type="radio" name="sexe" value="h" <?= (($_POST['sexe'] ?? '') === 'h') ? 'checked' : '' ?>> Homme
         <?php if (in_array('sexe', $champsIncorrects)) echo "<span style='color:red;'> *</span>"; ?>
         <br><br>
-
+        
         <label>Email :
             <?php if (in_array('email', $champsIncorrects)) echo "<span style='color:red;'> email invalide</span>"; ?>
         </label><br>
         <input type="email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES) ?>"><br><br>
 
-        <label>Login :
+        <label>Login <span style="color:red">*</span> :
             <?php if (in_array('login', $champsIncorrects)) echo "<span style='color:red;'> obligatoire</span>"; ?>
         </label><br>
         <input type="text" name="login" required value="<?= htmlspecialchars($_POST['login'] ?? '', ENT_QUOTES) ?>"><br><br>
 
-        <label>Mot de passe :</label><br>
+        <label>Mot de passe <span style="color:red">*</span> :</label><br>
         <input type="password" name="motdepasse" required>
         <?php if (in_array('motdepasse', $champsIncorrects)) echo "<span style='color:red;'> mots de passe incorrects</span>"; ?>
         <br><br>
@@ -159,7 +167,7 @@ include __DIR__ . '/../include/header.php';
         <?php if (in_array('cp', $champsIncorrects)) echo "<span style='color:red;'> 5 chiffres</span>"; ?>
         <br><br>
 
-        <label>Ville :</label><br>
+         <label>Ville :</label><br>
         <input type="text" name="ville" value="<?= htmlspecialchars($_POST['ville'] ?? '', ENT_QUOTES) ?>"><br><br>
 
         <label>Téléphone :</label><br>
@@ -168,8 +176,7 @@ include __DIR__ . '/../include/header.php';
         <br><br>
 
         <button type="submit" name="submit">S'inscrire</button>
-
+        
     </form>
 </div>
 
-<?php include __DIR__ . '/../include/footer.php'; ?>

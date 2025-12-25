@@ -3,23 +3,30 @@
 
 session_start();
 
-// Page demandée (par défaut : accueil )
+// Page demandée (par défaut : accueil)
 $page = $_GET['page'] ?? 'accueil';
 
-// pages autorisées
+// Pages autorisées
 $pagesAutorisees = [
     'accueil',
     'profil',
-    'inscription', 
+    'inscription',
     'modification',
     'connexion',
     'recettes',
-    'hierarchie'
+    'hierarchie',
+    'deconnexion'
 ];
 
 if (!in_array($page, $pagesAutorisees)) {
     $page = 'accueil';
 }
 
-// Inclusion de la page correspondante
+// HEADER GLOBAL
+include __DIR__ . '/include/header.php';
+
+// ROUTING
 require_once __DIR__ . '/views/' . $page . '.php';
+
+// FOOTER GLOBAL
+include __DIR__ . '/include/footer.php';
