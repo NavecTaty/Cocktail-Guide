@@ -1,26 +1,46 @@
-<!-- page de connexion au site web -->
-<!-- si l'utilisateur existe dans la base de données , connextion établie et retour vers la page d'acceuil-->
-<div class= inscription-container> 
+<?php
+
+require_once __DIR__ . '/../models/utilisateur.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $login = $_POST['login'] ?? '';
+    $motdepasse = $_POST['motdepasse'] ?? '';
+
+    $user = connecterUtilisateur($login, $motdepasse);
+
+    if ($user) {
+        //création d'une session 
+        $_SESSION['user'] = [
+            'id' => $user['uti_id'],
+            'login' => $user['login']
+        ];
+
+        header('Location: index.php?page=hierarchie');
+        exit;
+    } else {
+        $erreur = "Login ou mot de passe incorrect";
+    }
+}
+?>
+
+<div class="inscription-container"> 
 
     <h2>Connexion</h2>
-<!--formuliare de connexion-->
-<form action="#" method="POST">
-    <label for="login">Login:</label><br>
-    <input type="text" id="login" name="login"  required><br><br>
 
-    <label for="motdepasse">Mot de passe :</label><br>
-    <input type="password" id="motdepasse" name="motdepasse" placeholder="Votre mot de passe" required><br><br>
-    
-    <button type="submit" name = "submit">me connecter</button>
-    
+    <?php if (isset($erreur)): ?>
+        <p style="color:red"><?= htmlspecialchars($erreur, ENT_QUOTES) ?></p>
+    <?php endif; ?>
+
+    <form method="POST">
+        <label for="login">Login :</label><br>
+        <input type="text" id="login" name="login" required><br><br>
+
+        <label for="motdepasse">Mot de passe :</label><br>
+        <input type="password" id="motdepasse" name="motdepasse" required><br><br>
+        
+        <button type="submit" name="submit">Me connecter</button>
     </form>
-   <p> Pas de compte ?<a href= "index.php?page=inscription">inscrivez-vous</a></p>
-   
-    <!--vérification si l'utilisateur existe dans la base de données-->
-    <!--si dans la base de données session vers la page d'acceuil-->
 
-
-
-    <!--sinon session vers la page modification -->
-
+    <p>Pas de compte ? <a href="index.php?page=inscription">Inscrivez-vous</a></p>
 </div>

@@ -45,3 +45,22 @@ try{
    
 }
 }
+
+/**
+ * Gère l'authentification d'un utilisateur
+ */
+function connecterUtilisateur($login,$mdp){
+    global $access;
+
+    $userSQL = ("SELECT *
+                from utilisateur 
+                where login = ? ");
+    $stmtUser = $access->prepare($userSQL);
+    $stmtUser->execute([$login]);
+    $res = $stmtUser->fetch(PDO::FETCH_ASSOC);
+    //Vérification correspondance user et mot de passe
+    if($res && password_verify($mdp,$res['mdp'])){
+        return $res;
+    }
+    return null;
+}

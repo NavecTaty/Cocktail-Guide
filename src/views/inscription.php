@@ -9,9 +9,7 @@ $champsIncorrects = [];
 $valide = true;
 $erreurs = [];
 
-/* ==========================
-   VALIDATION
-   ========================== */
+/* VALIDATION */
 if (isset($_POST['submit'])) {
 
     $valide = true;
@@ -98,9 +96,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
-/* ==========================
-   AFFICHAGE
-   ========================== */
+/*AFFICHAGE */
 
 include __DIR__ . '/../include/header.php';
 ?>
