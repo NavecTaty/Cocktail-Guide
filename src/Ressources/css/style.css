@@ -28,18 +28,18 @@ body {
 
 .recherche-wrapper {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: center; 
+    gap: 20px; /
 }
 
 .recherche-container {
-    background-image: url('../Photos/cocktails.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 50px;
-    text-align: center;
-    flex: 1;
-    min-width: 300px;
+    background-image: url('../Photos/cocktails.jpg'); 
+    background-size: cover;     
+    background-position: center; 
+    padding: 50px;               
+    text-align: center;           
+    flex: 1;         
+    min-width: 300px;  
 }
 
 /* ===============================
