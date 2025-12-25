@@ -24,10 +24,12 @@ if (!in_array($page, $pagesAutorisees)) {
 }
 
 // HEADER GLOBAL
-include __DIR__ . '/include/header.php';
+include __DIR__ . '/include/header.php';?>
 
-// ROUTING
-require_once __DIR__ . '/views/' . $page . '.php';
-
+<main class="page-content">
+    <?php require_once __DIR__ . '/views/' . $page . '.php'; ?>
+</main>
+<?php
 // FOOTER GLOBAL
 include __DIR__ . '/include/footer.php';
+?>

@@ -36,7 +36,7 @@ foreach ($recettes as $r) {
     
     </p>
 </div>
-<main class="quelques-recettes" style="flex:1;">
+<main class="quelques-recettes">
     <h2 alignment = >Découvrez quelques-unes de nos recettes et boissons</h2>
     <div class="quelques-recettes-grille">
 

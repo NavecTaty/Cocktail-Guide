@@ -102,9 +102,12 @@ aside.menu a:hover {
 
 /* ===== Section principale ===== */
 .recettes {
-    max-width: 1200px;
+    max-width: 100%;
+    min-height: 400px;
     margin: 40px auto;
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ===== Titre ===== */
@@ -172,3 +175,9 @@ aside.menu a:hover {
 }
 
 
+.aucune-recette {
+    margin: auto;
+    font-size: 18px;
+    color: #777;
+    text-align: center;
+}

@@ -76,7 +76,7 @@ if (!isset($_GET['id'])) {
         <h2>Recettes <?= $alimentCourant ? "avec " . htmlspecialchars($alimentCourant['nom']) : "" ?></h2>
 
         <?php if (empty($recettes)): ?>
-            <p>Aucune recette à afficher.</p>
+            <p class="aucune-recette">Aucune recette à afficher.</p>
         <?php else: ?>
         <div class="recettes-grille">
              <?php foreach ($recettes as $r): ?>
