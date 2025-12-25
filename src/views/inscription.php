@@ -1,5 +1,6 @@
 
 <?php
+include __DIR__ . '/../include/header.php';
 /**
  * Formulaire d'inscription  et verification des données
  */
@@ -149,5 +150,7 @@ if (isset($_POST['submit'])) {
 
 </form>
 </div>
+<?php include __DIR__ . '/../include/footer.php'; ?>
+
 <!-- insertion dans la base de données-->
 

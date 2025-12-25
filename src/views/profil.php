@@ -7,7 +7,7 @@ if(isset($_SESSION['user_id'])){
 }
 // Sinon si un cookie ou info pour reconnaitre utilisateur existe → page connexion
 else {
-    include __DIR__ .'/inscription.php'; // afficher le formulaire de connexion
+    include __DIR__ .'/connexion.php'; // afficher le formulaire de connexion
 }
 ?>
  

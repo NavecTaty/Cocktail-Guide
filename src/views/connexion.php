@@ -14,7 +14,7 @@
     <button type="submit" name = "submit">me connecter</button>
     
     </form>
-   <p> Pas de compte ?<a href= "inscription_page.php">inscrivez-vous</a></p>
+   <p> Pas de compte ?<a href= "index.php?page=inscription">inscrivez-vous</a></p>
    
     <!--vérification si l'utilisateur existe dans la base de données-->
     <!--si dans la base de données session vers la page d'acceuil-->
