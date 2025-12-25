@@ -19,6 +19,7 @@ foreach ($recettes as $r) {
     }
 }
 ?>
+
 <div class = "recherche-wrapper">
 <div class="recherche-container">
     <form action="recherche.php" method="GET">
@@ -43,7 +44,7 @@ foreach ($recettes as $r) {
     
     </p>
 </div>
-<main class="quelques-recettes">
+<main class="quelques-recettes" style="flex:1;">
     <h2 alignment = >Découvrez quelques-unes de nos recettes et boissons</h2>
     <div class="quelques-recettes-grille">
 
