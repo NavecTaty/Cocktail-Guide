@@ -1,6 +1,4 @@
-/* =========================
-   PAGE HIERARCHIE - GLOBAL
-   ========================= */
+/*PAGE HIERARCHIE - GLOBAL */
 
 .page-hierarchie {
     background-color: #f9f9f9;
@@ -8,9 +6,7 @@
     border-radius: 6px;
 }
 
-/* =========================
-   BREADCRUMB
-   ========================= */
+/* BREADCRUMB */
 
 .breadcrumb {
     background-color: #ffffff;
@@ -23,25 +19,23 @@
 
 .breadcrumb a {
     text-decoration: none;
-    color: #0066cc;
+    color: #5a3e36;
 }
 
 .breadcrumb a:hover {
     text-decoration: underline;
 }
 
-/* =========================
-   MENU (GAUCHE)
-   ========================= */
+/*MENU (GAUCHE) */
 
-.menu {
-    background-color: #ffffff;
+aside.menu {
+   background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 15px;
 }
 
-.menu h3 {
+aside.menu h3 {
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 1.1rem;
@@ -49,29 +43,64 @@
     padding-bottom: 5px;
 }
 
-.menu ul {
-    list-style-type: disc;
-    padding-left: 20px;
+aside.menu ul {
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+}
+.menu-hierarchie {
+    list-style: none;
+    padding-left: 0;
     margin: 0;
 }
 
-.menu li {
+.menu-hierarchie li {
+    position: relative;
     margin: 6px 0;
+    padding-left: 18px;
 }
 
-.menu a {
+/* Indentation par niveau */
+.menu-hierarchie .niveau-0 { padding-left: 10px; }
+.menu-hierarchie .niveau-1 { padding-left: 25px; }
+.menu-hierarchie .niveau-2 { padding-left: 40px; }
+.menu-hierarchie .niveau-3 { padding-left: 55px; }
+.menu-hierarchie .niveau-4 { padding-left: 70px; }
+.menu-hierarchie .niveau-5 { padding-left: 85px; }
+.menu-hierarchie .niveau-6 { padding-left: 100px; }
+
+/* Puce personnalisée */
+.menu-hierarchie li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #999;
+    transition: transform 0.3s ease;
+}
+.menu-hierarchie li.actif > a {
+    font-weight: bold;
+    color: #5a3e36;
+}
+
+.menu-hierarchie li.actif::before {
+    transform: rotate(90deg);
+    color: #5a3e36;
+}
+
+
+aside.menu a {
     text-decoration: none;
-    color: #333;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
 }
 
-.menu a:hover {
+aside.menu a:hover {
     color: #0066cc;
     text-decoration: underline;
 }
 
-/* =========================
-   GRILLE DES RECETTES
-   ========================= */
+/*GRILLE DES RECETTE */
 
 .recettes-grille {
     display: grid;
@@ -142,3 +171,4 @@
         grid-template-columns: 1fr;
     }
 }
+

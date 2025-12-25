@@ -60,7 +60,7 @@ function getRecettePhoto($titre) {
     //On obtient le chemin de la photo si il existe
     $chemin = __DIR__ . '/../Ressources/Photos/' . $nom;
     if(!file_exists($chemin)){
-        return "Ressources/Photos/defaut";
+        return null;
     }
     return "Ressources/Photos/" . $nom ;
 }

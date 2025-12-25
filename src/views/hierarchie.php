@@ -36,7 +36,14 @@ include __DIR__ . '/../include/header.php';
 <?php endif; ?>
 
 <div class="page-hierarchie" style="display:flex; gap:20px; margin-top:15px;">
-
+   <?php $menuHierarchie = [];
+        if ($alimentCourant) {
+        // Parents + courant
+         $menuHierarchie = getCheminHierarchique($alimentCourant['id_aliment']);
+        }
+        // Sous-catégories
+        $menuEnfants = $sousCategories;
+    ?>
     <aside class="menu" style="width:260px;">
         <h3>
             <?= $alimentCourant ? "Sous-catégories de " . htmlspecialchars($alimentCourant['nom']) : "Catégories" ?>
@@ -45,15 +52,24 @@ include __DIR__ . '/../include/header.php';
         <?php if (empty($sousCategories)): ?>
             <p>Aucune sous-catégorie.</p>
         <?php else: ?>
-            <ul>
-                <?php foreach ($sousCategories as $cat): ?>
-                    <li>
-                        <a href="index.php?page=hierarchie&id=<?= $cat['id_aliment'] ?>">
-                            <?= htmlspecialchars($cat['nom']) ?>
-                        </a>
-                    </li>
+         <ul class="menu-hierarchie">
+                <?php foreach ($menuHierarchie as $niveau => $a): ?>
+                 <li class="niveau-<?= $niveau ?> actif">
+                    <a href="index.php?page=hierarchie&id=<?= $a['id_aliment'] ?>">
+                         <?= htmlspecialchars($a['nom']) ?>
+                    </a>
+                 </li>
                 <?php endforeach; ?>
-            </ul>
+
+                 <?php foreach ($menuEnfants as $enfant): ?>
+                  <li class="niveau-<?= count($menuHierarchie) ?>">
+                    <a href="index.php?page=hierarchie&id=<?= $enfant['id_aliment'] ?>">
+                         <?= htmlspecialchars($enfant['nom']) ?>
+                     </a>
+                 </li>
+                 <?php endforeach; ?>
+        </ul>
+
         <?php endif; ?>
     </aside>
 
@@ -71,7 +87,6 @@ include __DIR__ . '/../include/header.php';
              ?>
 
             <div class="recette-card">
-             <a href="index.php?page=recettes&id=<?= $r['id_recette'] ?>">
                 <img src="<?= $image ?>"
                      alt="Photo <?= htmlspecialchars($r['titre']) ?>"
                      onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
@@ -79,7 +94,7 @@ include __DIR__ . '/../include/header.php';
                 <h4><?= htmlspecialchars($r['titre']) ?></h4>
 
                 <p><?= htmlspecialchars($apercu) ?>...</p>
-            </a>
+            
         </div>
     <?php endforeach; ?>
 </div>
