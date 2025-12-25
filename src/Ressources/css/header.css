@@ -1,11 +1,13 @@
 /* Style du header */
 .header {
-    background-color: #f5e6e8; /* rose très clair */
-    color: #5a3e36; /* beige foncé pour le texte */
+    flex-shrink: 0;            /* ← IMPORTANT */
+    background-color: #f5e6e8;
+    color: #5a3e36;
     text-align: center;
     padding: 20px;
-    border-bottom: 2px solid #d8b6b6; /* séparation douce */
+    border-bottom: 2px solid #d8b6b6;
 }
+
 
 .header h1 {
     margin: 0;
@@ -39,3 +41,6 @@
     margin-right: auto;
 }
 
+.contenu {
+    flex: 1;   
+}
