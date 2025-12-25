@@ -21,13 +21,13 @@ foreach ($recettes as $r) {
 ?>
 <div class = "recherche-wrapper">
 <div class="recherche-container">
-    <form action="exclure.php" method="GET">
+    <form action="recherche.php" method="GET">
         <input type="text" name="q" placeholder="Rechercher : noix , oeuf" required>
         <button type="submit">Rechercher</button>
     </form>
 </div>
 <div class="recherche-container">
-    <form action="exclure.php" method="GET">
+    <form action="recherche.php" method="GET">
         <input type="text" name="q" placeholder="Rechercher : noix , oeuf" required>
         <button type="submit">Rechercher</button>
     </form>
