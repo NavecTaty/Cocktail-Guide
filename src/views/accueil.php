@@ -1,4 +1,7 @@
 <?php
+/**
+ * PAGE D ACCEUIL
+ */
 require_once __DIR__ . '/../models/aliment.php';
 require_once __DIR__ . '/../models/recette.php';
 
@@ -21,16 +24,19 @@ foreach ($recettes as $r) {
 ?>
 <div class = "recherche-wrapper">
 <div class="recherche-container">
-    <form action="recherche.php" method="GET">
-        <input type="text" name="q" placeholder="Rechercher : noix , oeuf" required>
-        <button type="submit">Rechercher</button>
-    </form>
+    <form action="index.php" method="GET">
+    <input type="hidden" name="page" value="recettes">
+    <input type="text" name="q" placeholder="inclure : noix, oeuf" required>
+    <button type="submit">Rechercher</button>
+</form>
 </div>
 <div class="recherche-container">
-    <form action="recherche.php" method="GET">
-        <input type="text" name="q" placeholder="Rechercher : noix , oeuf" required>
-        <button type="submit">Rechercher</button>
-    </form>
+   <form action="index.php" method="GET">
+    <input type="hidden" name="page" value="recettes">
+    <input type="text" name="exclude" placeholder="exclure : noix, oeuf" required>
+    <button type="submit">Rechercher</button>
+</form>
+
 </div>
 </div>
 
