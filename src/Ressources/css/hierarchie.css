@@ -100,75 +100,75 @@ aside.menu a:hover {
     text-decoration: underline;
 }
 
-/*GRILLE DES RECETTE */
+/* ===== Section principale ===== */
+.recettes {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
 
+/* ===== Titre ===== */
+.recettes h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 35px;
+    color: #2b2b2b;
+}
+
+/* ===== Grille ===== */
 .recettes-grille {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cases par ligne */
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
 }
-.recettes-grille > * {
-    display: block !important;
-}
+
+/* ===== Carte recette ===== */
 .recette-card {
     background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
 }
 
 .recette-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
 }
 
+/* ===== Image ===== */
 .recette-card img {
     width: 100%;
-    flex: 0 0 200px;
+    height: 180px;
     object-fit: cover;
     display: block;
 }
 
-/* Texte */
+/* ===== Titre recette ===== */
 .recette-card h4 {
-    margin: 10px;
-    font-size: 1.05rem;
-    color: #2c3e50;
+    margin: 15px 15px 8px;
+    font-size: 18px;
+    color: #222;
 }
 
+/* ===== Aperçu ===== */
 .recette-card p {
-    margin: 0 10px 12px;
-    font-size: 0.9rem;
+    margin: 0 15px 20px;
+    font-size: 14px;
     color: #555;
     line-height: 1.4;
 }
 
-/* Lien cliquable sur toute la carte */
-.recette-card a {
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
-}
-
-@media (max-width: 1200px) {
-    .recettes-grille {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .recettes-grille {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
+/* ===== Responsive mobile ===== */
 @media (max-width: 600px) {
-    .recettes-grille {
-        grid-template-columns: 1fr;
+    .recettes h2 {
+        font-size: 22px;
+    }
+
+    .recette-card img {
+        height: 160px;
     }
 }
+
 

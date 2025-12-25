@@ -3,7 +3,7 @@
 
 session_start();
 
-// Page demandée (par défaut : accueil)
+// Page demandée (par défaut accueil)
 $page = $_GET['page'] ?? 'accueil';
 
 // Pages autorisées
@@ -15,7 +15,8 @@ $pagesAutorisees = [
     'connexion',
     'recettes',
     'hierarchie',
-    'deconnexion'
+    'deconnexion',
+    'favoris'
 ];
 
 if (!in_array($page, $pagesAutorisees)) {
