@@ -1,4 +1,4 @@
-<?php include __DIR__ .'/../include/header.php'; ?>
+<?php// include __DIR__ .'/../include/header.php'; ?>
 <div class="page">
     <aside class="sidebar">
         <?php include __DIR__ .'/hierarchie.php'; ?>
@@ -8,6 +8,6 @@
         <?php include __DIR__ .'/main.php'; ?>
     </main>
 </div>
-    <!-- <?php include __DIR__ .'/../include/footer.php'; ?> -->
+    <!-- <?php// include __DIR__ .'/../include/footer.php'; ?> -->
 </body>
 </html>

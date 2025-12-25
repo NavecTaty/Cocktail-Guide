@@ -63,15 +63,28 @@ include __DIR__ . '/../include/header.php';
         <?php if (empty($recettes)): ?>
             <p>Aucune recette à afficher.</p>
         <?php else: ?>
-            <ul>
-                <?php foreach ($recettes as $r): ?>
-                    <li>
-                        <a href="index.php?page=recettes&id=<?= $r['id_recette'] ?>">
-                            <?= htmlspecialchars($r['titre']) ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+        <div class="recettes-grille">
+             <?php foreach ($recettes as $r): ?>
+             <?php
+                 $image = getRecettePhoto($r['titre']);
+                 $apercu = mb_substr($r['preparation'], 0, 120);
+             ?>
+
+            <div class="recette-card">
+             <a href="index.php?page=recettes&id=<?= $r['id_recette'] ?>">
+                <img src="<?= $image ?>"
+                     alt="Photo <?= htmlspecialchars($r['titre']) ?>"
+                     onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
+
+                <h4><?= htmlspecialchars($r['titre']) ?></h4>
+
+                <p><?= htmlspecialchars($apercu) ?>...</p>
+            </a>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+
         <?php endif; ?>
     </main>
 

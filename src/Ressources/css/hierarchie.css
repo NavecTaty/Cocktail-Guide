@@ -70,49 +70,75 @@
 }
 
 /* =========================
-   RECETTES (DROITE)
+   GRILLE DES RECETTES
    ========================= */
 
-.recettes {
+.recettes-grille {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cases par ligne */
+    gap: 20px;
+}
+.recettes-grille > * {
+    display: block !important;
+}
+.recette-card {
     background-color: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.recettes h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
+.recette-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
 }
 
-.recettes ul {
-    list-style-type: square;
-    padding-left: 20px;
+.recette-card img {
+    width: 100%;
+    flex: 0 0 200px;
+    object-fit: cover;
+    display: block;
 }
 
-.recettes li {
-    margin: 6px 0;
-}
-
-.recettes a {
-    text-decoration: none;
+/* Texte */
+.recette-card h4 {
+    margin: 10px;
+    font-size: 1.05rem;
     color: #2c3e50;
 }
 
-.recettes a:hover {
-    color: #0066cc;
-    text-decoration: underline;
+.recette-card p {
+    margin: 0 10px 12px;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
 }
 
-/* =========================
-   MESSAGE VIDE
-   ========================= */
+/* Lien cliquable sur toute la carte */
+.recette-card a {
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
 
-.menu p,
-.recettes p {
-    font-style: italic;
-    color: #777;
+@media (max-width: 1200px) {
+    .recettes-grille {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .recettes-grille {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .recettes-grille {
+        grid-template-columns: 1fr;
+    }
 }
