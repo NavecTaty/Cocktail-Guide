@@ -32,29 +32,39 @@ foreach ($recettes as $r) {
 
         <input type="hidden" name="page" value="recherche">
 
-        <label>Inclure :</label>
-        <input type="text"
-               id="include-input"
-               placeholder="Inclure : jus, citron">
+        <!-- 🔹 WRAPPER FLEX -->
+        <div class="champs-ligne">
 
-        <ul id="include-suggestions" class="suggestions"></ul>
-        <div id="include-tags"></div>
+            <div class="champ-recherche">
+                <label>Inclure :</label>
+                <input type="text"
+                       id="include-input"
+                       placeholder="Inclure : jus, citron">
 
-        <label>Exclure :</label>
-        <input type="text"
-               id="exclude-input"
-               placeholder="Exclure : alcool, whisky">
+                <ul id="include-suggestions" class="suggestions"></ul>
+                <div id="include-tags"></div>
+            </div>
 
-        <ul id="exclude-suggestions" class="suggestions"></ul>
-        <div id="exclude-tags"></div>
+            <div class="champ-recherche">
+                <label>Exclure :</label>
+                <input type="text"
+                       id="exclude-input"
+                       placeholder="Exclure : alcool, whisky">
 
-        <!-- Champs réellement envoyés -->
+                <ul id="exclude-suggestions" class="suggestions"></ul>
+                <div id="exclude-tags"></div>
+            </div>
+
+        </div>
+
+        <!-- Champs envoyés -->
         <input type="hidden" name="include" id="include-hidden">
         <input type="hidden" name="exclude" id="exclude-hidden">
 
         <button type="submit">Rechercher</button>
     </form>
 </div>
+
 
 
 <div class="texte">

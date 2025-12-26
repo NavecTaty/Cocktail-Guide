@@ -64,3 +64,24 @@ function getRecettePhoto($titre) {
     }
     return "Ressources/Photos/" . $nom ;
 }
+
+/**
+ * retourne les aliments en fonction de recettes
+ */
+
+function getAlimentsByRecette(int $idRecette): array
+{
+    global $access;
+
+    $sql = "
+        SELECT a.nom
+        FROM aliments a
+        JOIN index_recette ir ON ir.aliment = a.nom
+        WHERE ir.id_recette = ?
+    ";
+
+    $stmt = $access->prepare($sql);
+    $stmt->execute([$idRecette]);
+
+    return $stmt->fetchAll();
+}
