@@ -121,8 +121,9 @@ aside.menu a:hover {
 /* ===== Grille ===== */
 .recettes-grille {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 260px));
     gap: 25px;
+    justify-content: center;
 }
 
 /* ===== Carte recette ===== */
@@ -133,6 +134,8 @@ aside.menu a:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
+    width: 100%;
+    max-width: 280px;
 }
 
 .recette-card:hover {

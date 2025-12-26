@@ -65,8 +65,9 @@ body {
 /* grille responsive */
 .quelques-recettes-grille {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+   grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    justify-content: center;
 }
 
 /* carte recette */
