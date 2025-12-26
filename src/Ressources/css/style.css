@@ -117,3 +117,51 @@ body {
         height: 160px;
     }
 }
+/* =========================
+   FAVORIS - BOUTON
+   ========================= */
+
+.favori-form {
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+/* Bouton de base */
+.favori-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px 6px;
+    transition: transform 0.15s ease, color 0.15s ease;
+}
+
+/* Favori actif */
+.favori-btn.actif {
+    color: #f1c40f; /* jaune étoile */
+}
+
+/* Favori inactif */
+.favori-btn.inactif {
+    color: #bbb;
+}
+
+/* Hover */
+.favori-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Hover spécifique */
+.favori-btn.inactif:hover {
+    color: #f1c40f;
+}
+
+.favori-btn.actif:hover {
+    color: #d4ac0d;
+}
+
+/* Focus accessibilité */
+.favori-btn:focus {
+    outline: 2px solid #f1c40f;
+    border-radius: 4px;
+}
