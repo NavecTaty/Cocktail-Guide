@@ -1,4 +1,7 @@
 <?php
+/**
+ * PAGE D ACCEUIL
+ */
 require_once __DIR__ . '/../models/aliment.php';
 require_once __DIR__ . '/../models/recette.php';
 require_once __DIR__ . '/../models/recettesFavorites.php';
@@ -23,20 +26,46 @@ foreach ($recettes as $r) {
 }
 ?>
 
-<div class = "recherche-wrapper">
+
 <div class="recherche-container">
-    <form action="recherche.php" method="GET">
-        <input type="text" name="q" placeholder="Rechercher : noix , oeuf" required>
+    <form id="form-recherche" action="index.php" method="GET">
+
+        <input type="hidden" name="page" value="recherche">
+
+        <!-- 🔹 WRAPPER FLEX -->
+        <div class="champs-ligne">
+
+            <div class="champ-recherche">
+                <label>Inclure :</label>
+                <input type="text"
+                       id="include-input"
+                       placeholder="Inclure : jus, citron">
+
+                <ul id="include-suggestions" class="suggestions"></ul>
+                <div id="include-tags"></div>
+            </div>
+
+            <div class="champ-recherche">
+                <label>Exclure :</label>
+                <input type="text"
+                       id="exclude-input"
+                       placeholder="Exclure : alcool, whisky">
+
+                <ul id="exclude-suggestions" class="suggestions"></ul>
+                <div id="exclude-tags"></div>
+            </div>
+
+        </div>
+
+        <!-- Champs envoyés -->
+        <input type="hidden" name="include" id="include-hidden">
+        <input type="hidden" name="exclude" id="exclude-hidden">
+
         <button type="submit">Rechercher</button>
     </form>
 </div>
-<div class="recherche-container">
-    <form action="recherche.php" method="GET">
-        <input type="text" name="q" placeholder="Rechercher : noix , oeuf" required>
-        <button type="submit">Rechercher</button>
-    </form>
-</div>
-</div>
+
+
 
 <div class="texte">
     <p><strong>Qui sommes-nous ?</strong></p>

@@ -17,7 +17,9 @@ $pagesAutorisees = [
     'hierarchie',
     'deconnexion',
     'favoris',
-    'favoris_action'
+    'favoris_action',
+    'recherche'
+    
 ];
 
 if (!in_array($page, $pagesAutorisees)) {

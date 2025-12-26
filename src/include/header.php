@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/Cocktail-Guide/src/Ressources/css/profil1.css">
      <link rel="stylesheet" href="/Cocktail-Guide/src/Ressources/css/hierarchie.css">
     <link rel="stylesheet" href="/Cocktail-Guide/src/Ressources/css/modification.css">
+    <script src="/Cocktail-Guide/src/Ressources/js/recherche.js" defer></script>
 
 
 
