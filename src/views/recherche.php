@@ -1,34 +1,49 @@
 <?php
 /**
- * VIEW : recherche.php
- * Affiche les résultats de recherche de recettes
+ * PAGE DE RÉSULTATS DE RECHERCHE
  */
 
 require_once __DIR__ . '/../models/recette.php';
 require_once __DIR__ . '/../models/aliment.php';
 require_once __DIR__ . '/../models/research.php';
 
-// Paramètres GET
+// ===============================
+// Récupération des paramètres
+// ===============================
+
 $include = $_GET['include'] ?? '';
 $exclude = $_GET['exclude'] ?? '';
 
-$recettes = [];
+// Transformation en tableaux propres
+$includeAliments = array_filter(array_map('trim', explode(',', $include)));
+$excludeAliments = array_filter(array_map('trim', explode(',', $exclude)));
+
 $titrePage = "Résultats de recherche";
+$recettes = [];
 
-// Recherche inclusive prioritaire
-if (!empty($include)) {
-    $aliments = array_map('trim', explode(',', $include));
-    $recettes = getRecettesInclusivesParNom($aliments);
-    $titrePage = "Recettes contenant : " . htmlspecialchars($include);
-}
+// ===============================
+// Recherche combinée
+// ===============================
 
-// Recherche exclusive
-elseif (!empty($exclude)) {
-    $aliments = array_map('trim', explode(',', $exclude));
-    $recettes = getRecettesExclusivesParNom($aliments);
-    $titrePage = "Recettes sans : " . htmlspecialchars($exclude);
+if (!empty($includeAliments) || !empty($excludeAliments)) {
+
+    //fonction combinée du modèle
+    $recettes = rechercherRecettesCombinees(
+        $includeAliments,
+        $excludeAliments
+    );
+
+    // Construction du titre
+    if (!empty($includeAliments)) {
+        $titrePage .= " avec " . htmlspecialchars(implode(', ', $includeAliments));
+    }
+
+    if (!empty($excludeAliments)) {
+        $titrePage .= " sans " . htmlspecialchars(implode(', ', $excludeAliments));
+    }
 }
 ?>
+
 
 <main class="recettes" style="margin-top:30px;">
 
