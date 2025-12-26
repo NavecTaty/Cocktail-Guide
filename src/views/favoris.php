@@ -3,7 +3,7 @@
  * Gère les recettes favorites d'un utilisateur
  */
 require_once __DIR__ . '/../models/recettesFavorites.php';
-
+require_once __DIR__ . '/../models/recette.php';
 if (!isset($_SESSION['user'])) {?>
     <p class="aucune-recette">Connectes-toi, tes favoris t'attendent vite !</p>";
    <?php return;
@@ -18,18 +18,38 @@ $favoris = getFavorisUtilisateur($_SESSION['user']['id']);
 <?php if (empty($favoris)): ?>
     <p class="aucune-recette">Aucune recette favorite.</p>
 <?php else: ?>
-    <ul>
-        <?php foreach ($favoris as $r):
-            //$image = getRecettePhoto($r['titre']); // image déduite du titre
+     <div class="recettes-grille">
+             <?php foreach ($favoris as $r): ?>
+             <?php
+                 $image = getRecettePhoto($r['titre']);
+                 $apercu = mb_substr($r['preparation'], 0, 120);
+                 $estFavori = true;
              ?>
-            <li>
-                <?= htmlspecialchars($r['titre']) ?>
-                <form method="post" action="index.php?page=favoris_action" style="display:inline;">
-                    <input type="hidden" name="id_recette" value="<?= $r['id_recette'] ?>">
-                    <input type="hidden" name="action" value="supprimer">
-                    <button>★</button>
-                </form>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif; ?>
+
+            <div class="recette-card">
+                <!---- icone pour retirer comme favori  ---->
+                <form method="post" action="index.php?page=favoris_action" class="favori-form">
+                <input type="hidden" name="id_recette" value="<?= $r['id_recette'] ?>">
+                <input type="hidden" name="action" value="supprimer">
+                <button type="submit" class="favori-btn actif">
+                    ★
+                </button>
+            </form>
+
+                <img src="<?= $image ?>"
+                     alt="Photo <?= htmlspecialchars($r['titre']) ?>"
+                     onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
+
+                <h4><?= htmlspecialchars($r['titre']) ?></h4>
+
+                <p><?= htmlspecialchars($apercu) ?>...</p>
+            
+        </div>
+    <?php endforeach; ?>
+</div>
+
+
+        <?php endif; ?>
+    </main>
+
+</div>
