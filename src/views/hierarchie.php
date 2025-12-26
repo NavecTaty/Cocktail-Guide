@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/aliment.php';
 require_once __DIR__ . '/../models/recette.php';
-
+require_once __DIR__ . '/../models/recettesFavorites.php';
 
 if (!isset($_GET['id'])) {
     $alimentCourant = null;
@@ -76,16 +76,28 @@ if (!isset($_GET['id'])) {
         <h2>Recettes <?= $alimentCourant ? "avec " . htmlspecialchars($alimentCourant['nom']) : "" ?></h2>
 
         <?php if (empty($recettes)): ?>
-            <p>Aucune recette à afficher.</p>
+            <p class="aucune-recette">Aucune recette à afficher.</p>
         <?php else: ?>
         <div class="recettes-grille">
              <?php foreach ($recettes as $r): ?>
              <?php
                  $image = getRecettePhoto($r['titre']);
                  $apercu = mb_substr($r['preparation'], 0, 120);
+                 $estFavori = estFavoriGlobal($r['id_recette']);
              ?>
 
             <div class="recette-card">
+                <!---- icone pour marquer comme favori  ---->
+                <form method="post" action="index.php?page=favoris_action" class="favori-form">
+                        <input type="hidden" name="id_recette" value="<?= $r['id_recette'] ?>">
+                         <input type="hidden" name="action" value="<?= $estFavori ? 'supprimer' : 'ajouter' ?>">
+                         <button type="submit"
+                             class="favori-btn <?= $estFavori ? 'actif' : 'inactif' ?>"
+                            aria-label="<?= $estFavori ? 'Retirer des favoris' : 'Ajouter aux favoris' ?>">
+                            <?= $estFavori ? '★' : '☆' ?>
+                        </button>
+                </form>
+
                 <img src="<?= $image ?>"
                      alt="Photo <?= htmlspecialchars($r['titre']) ?>"
                      onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">

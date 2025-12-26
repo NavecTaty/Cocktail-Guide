@@ -4,6 +4,8 @@
  */
 require_once __DIR__ . '/../models/aliment.php';
 require_once __DIR__ . '/../models/recette.php';
+require_once __DIR__ . '/../models/recettesFavorites.php';
+
 
 // Récupérer toutes les recettes
 $recettes = getAllRecettes();
@@ -15,6 +17,7 @@ foreach ($recettes as $r) {
     // On garde uniquement les recettes qui ont une image associée
     if (!empty($image)) {
         $recettesAvecImage[] = [
+            'id_recette' =>$r['id_recette'],
             'titre' => $r['titre'],
             'preparation' => $r['preparation'],
             'image' => $image
@@ -22,6 +25,7 @@ foreach ($recettes as $r) {
     }
 }
 ?>
+
 <div class = "recherche-wrapper">
 <div class="recherche-container">
     <form action="index.php" method="GET">
@@ -54,9 +58,21 @@ foreach ($recettes as $r) {
     <div class="quelques-recettes-grille">
 
         <?php foreach ($recettesAvecImage as $r): ?>
-            <?php $apercu = mb_substr($r['preparation'], 0, 120); ?>
+            <?php $apercu = mb_substr($r['preparation'], 0, 120); 
+                $estFavori = estFavoriGlobal($r['id_recette']);
+            ?>
 
             <div class="recette-card-bis">
+                <!---- icone pour marquer comme favori  ---->
+                <form method="post" action="index.php?page=favoris_action" class="favori-form">
+                        <input type="hidden" name="id_recette" value="<?= $r['id_recette'] ?>">
+                         <input type="hidden" name="action" value="<?= $estFavori ? 'supprimer' : 'ajouter' ?>">
+                         <button type="submit"
+                            class="favori-btn <?= $estFavori ? 'actif' : 'inactif' ?>"
+                             aria-label="<?= $estFavori ? 'Retirer des favoris' : 'Ajouter aux favoris' ?>">
+                            <?= $estFavori ? '★' : '☆' ?>
+    </button>
+                </form>
                 <img src="<?= htmlspecialchars($r['image'], ENT_QUOTES) ?>"
                     alt="Photo <?= htmlspecialchars($r['titre'], ENT_QUOTES) ?>">
 

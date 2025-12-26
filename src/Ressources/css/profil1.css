@@ -1,13 +1,14 @@
 /*STYLE DU CONTENEUR D'INSCRIPTION*/
 .inscription-container {
-    background-color: #fff0f5; /* rose pâle */
+   background-color: #fff0f5; /* rose pâle */
     padding: 30px;
-    max-width: 500px;
+    max-width: 400px;          /* largeur  */
+    width: 100%;               /* responsive */
     margin: 40px auto;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
-    color: black; /* texte noir */
+    color: black;
 }
 
 .inscription-container h2 {
@@ -48,3 +49,4 @@
 .inscription-container button:hover {
     background-color: #c79aa3; /* rose foncé au survol */
 }
+

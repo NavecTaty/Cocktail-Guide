@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../models/utilisateur.php';
+require_once __DIR__ . '/../models/recettesFavorites.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -15,7 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'id' => $user['uti_id'],
             'login' => $user['login']
         ];
+       
+        //fusion des favoris stockés en mode déconnexion
+        if (isset($_SESSION['favoris_temp'])) {
+             foreach ($_SESSION['favoris_temp'] as $idRecette) {
+                ajouterFavori($_SESSION['user']['id'], $idRecette);
+            }
+             unset($_SESSION['favoris_temp']);
+        }
 
+        //redirection
         header('Location: index.php?page=modification');
         exit;
     } else {

@@ -1,16 +1,25 @@
 .form-actions {
     display: flex;
-    gap: 300px;          /* espace entre les boutons */
+    gap: 10px;
     margin-top: 20px;
+    align-items: center;
 }
 
 .form-actions button {
     padding: 10px 20px;
     font-size: 14px;
+    line-height: 1;
+    box-sizing: border-box;
+    font-family: inherit;
     cursor: pointer;
 }
 
-/* optionnel : styles */
+.form-actions button {
+    min-width: 120px;
+}
+
+
+/* styles */
 .btn-primary {
     background-color: #007bff;
     color: white;
