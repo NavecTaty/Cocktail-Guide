@@ -29,22 +29,33 @@ foreach ($recettes as $r) {
 
 <div class="recherche-container">
     <form id="form-recherche" action="index.php" method="GET">
-    <input type="hidden" name="page" value="recherche">
 
-    <label>Inclure :</label>
-    <input type="text" id="include-input" placeholder="Ex : jus de tomate">
-    <div id="include-tags"></div>
+        <input type="hidden" name="page" value="recherche">
 
-    <label>Exclure :</label>
-    <input type="text" id="exclude-input" placeholder="Ex : whisky">
-    <div id="exclude-tags"></div>
+        <label>Inclure :</label>
+        <input type="text"
+               id="include-input"
+               placeholder="Inclure : jus, citron">
 
-    <input type="hidden" name="include" id="include-hidden">
-    <input type="hidden" name="exclude" id="exclude-hidden">
+        <ul id="include-suggestions" class="suggestions"></ul>
+        <div id="include-tags"></div>
 
-    <button type="submit">Rechercher</button>
-</form>
+        <label>Exclure :</label>
+        <input type="text"
+               id="exclude-input"
+               placeholder="Exclure : alcool, whisky">
+
+        <ul id="exclude-suggestions" class="suggestions"></ul>
+        <div id="exclude-tags"></div>
+
+        <!-- Champs réellement envoyés -->
+        <input type="hidden" name="include" id="include-hidden">
+        <input type="hidden" name="exclude" id="exclude-hidden">
+
+        <button type="submit">Rechercher</button>
+    </form>
 </div>
+
 
 <div class="texte">
     <p><strong>Qui sommes-nous ?</strong></p>

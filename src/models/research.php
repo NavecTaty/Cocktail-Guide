@@ -2,6 +2,10 @@
 /**
  * fonctions pour la recherche des boissons
  */
+
+
+require_once __DIR__ . '/connection.php';
+
 /**
  * Recherche inclusive par noms d'aliments
  * @param array $nomsAliments
@@ -72,3 +76,20 @@ function getRecettesExclusivesParNom(array $nomsAliments) {
 
     return $resultat;
 }
+
+function rechercherAlimentsParNom(string $term): array {
+    global $access;
+
+    $sql = "SELECT nom
+            FROM aliments
+            WHERE nom LIKE ?
+            ORDER BY nom
+            LIMIT 10";
+
+    $stmt = $access->prepare($sql);
+    $stmt->execute([$term . '%']);
+
+    return $stmt->fetchAll();
+}
+
+
