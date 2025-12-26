@@ -76,7 +76,9 @@ function getRecettesExclusivesParNom(array $nomsAliments) {
 
     return $resultat;
 }
-
+/**
+ * Retourn le nomdes aliments qui commencent par une suite de lettre
+ */
 function rechercherAlimentsParNom(string $term): array {
     global $access;
 
@@ -91,5 +93,69 @@ function rechercherAlimentsParNom(string $term): array {
 
     return $stmt->fetchAll();
 }
+
+
+/**
+ * Recherche combinée : inclusive + exclusive
+ *
+ * @param array $include
+ * @param array $exclude
+ * @return array
+ */
+function rechercherRecettesCombinees(array $include, array $exclude): array
+{
+    //  Recherche inclusive
+    $recettes = [];
+
+    if (!empty($include)) {
+        $recettes = getRecettesInclusivesParNom($include);
+    } else {
+        // Si pas d'inclusion → toutes les recettes
+        $recettes = getAllRecettes();
+    }
+
+    //  Si pas d'exclusion → terminé
+    if (empty($exclude)) {
+        return $recettes;
+    }
+
+    // Construction des aliments interdits (avec hiérarchie)
+    $alimentsInterdits = [];
+
+    foreach ($exclude as $nom) {
+        $aliment = getAlimentByName($nom);
+        if (!$aliment) continue;
+
+        $alimentsInterdits[] = $aliment['nom'];
+        $alimentsInterdits = array_merge(
+            $alimentsInterdits,
+            getToutesLesSousCategories($aliment['id_aliment'])
+        );
+    }
+
+    $alimentsInterdits = array_unique($alimentsInterdits);
+
+    //  Filtrage des recettes
+    $resultat = [];
+
+    foreach ($recettes as $recette) {
+        $ingredients = getAlimentsByRecette($recette['id_recette']);
+
+        $aExclure = false;
+        foreach ($ingredients as $ing) {
+            if (in_array($ing['nom'], $alimentsInterdits)) {
+                $aExclure = true;
+                break;
+            }
+        }
+
+        if (!$aExclure) {
+            $resultat[] = $recette;
+        }
+    }
+
+    return $resultat;
+}
+
 
 
