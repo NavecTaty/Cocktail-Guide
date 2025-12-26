@@ -87,7 +87,7 @@ if (!isset($_GET['id'])) {
              ?>
 
             <div class="recette-card">
-                <!---- icone pour marquer comme favori  ---->
+                <!---- icone pour marquer/retirer un favori  ---->
                 <form method="post" action="index.php?page=favoris_action" class="favori-form">
                         <input type="hidden" name="id_recette" value="<?= $r['id_recette'] ?>">
                          <input type="hidden" name="action" value="<?= $estFavori ? 'supprimer' : 'ajouter' ?>">
