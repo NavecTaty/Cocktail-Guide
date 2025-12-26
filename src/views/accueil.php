@@ -26,22 +26,24 @@ foreach ($recettes as $r) {
 }
 ?>
 
-<div class = "recherche-wrapper">
-<div class="recherche-container">
-    <form action="index.php" method="GET">
-    <input type="hidden" name="page" value="recettes">
-    <input type="text" name="q" placeholder="inclure : noix, oeuf" required>
-    <button type="submit">Rechercher</button>
-</form>
-</div>
-<div class="recherche-container">
-   <form action="index.php" method="GET">
-    <input type="hidden" name="page" value="recettes">
-    <input type="text" name="exclude" placeholder="exclure : noix, oeuf" required>
-    <button type="submit">Rechercher</button>
-</form>
 
-</div>
+<div class="recherche-container">
+    <form id="form-recherche" action="index.php" method="GET">
+    <input type="hidden" name="page" value="recherche">
+
+    <label>Inclure :</label>
+    <input type="text" id="include-input" placeholder="Ex : jus de tomate">
+    <div id="include-tags"></div>
+
+    <label>Exclure :</label>
+    <input type="text" id="exclude-input" placeholder="Ex : whisky">
+    <div id="exclude-tags"></div>
+
+    <input type="hidden" name="include" id="include-hidden">
+    <input type="hidden" name="exclude" id="exclude-hidden">
+
+    <button type="submit">Rechercher</button>
+</form>
 </div>
 
 <div class="texte">

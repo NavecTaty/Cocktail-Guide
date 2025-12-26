@@ -26,21 +26,79 @@ body {
    SECTION RECHERCHE
 ================================ */
 
+/* Wrapper pleine largeur */
 .recherche-wrapper {
+    width: 100%;
     display: flex;
-    justify-content: center; 
-    gap: 20px; /
+    justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
+/* Container plein écran horizontal */
 .recherche-container {
-    background-image: url('../Photos/cocktails.jpg'); 
-    background-size: cover;     
-    background-position: center; 
-    padding: 50px;               
-    text-align: center;           
-    flex: 1;         
-    min-width: 300px;  
+    width: 100%;
+    min-height: 280px;
+
+    background-image: url('../Photos/cocktails.jpg');
+    background-size: cover;        /* remplit toute la largeur */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 40px 20px;
+    text-align: center;
+
+    position: relative;
 }
+
+/* Voile pour lisibilité */
+.recherche-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(245, 230, 232, 0.55); /* moins transparent */
+    z-index: 0;
+}
+
+/* Form au-dessus */
+.recherche-container form {
+    position: relative;
+    z-index: 1;
+
+    max-width: 900px;   
+    margin: 0 auto;
+}
+
+/* Champ de recherche */
+.recherche-container input[type="text"] {
+    width: 70%;
+    max-width: 600px;
+
+    padding: 14px 18px;
+    border-radius: 30px;
+    border: 1px solid #d8b6b6;
+    font-size: 16px;
+}
+
+/* Bouton */
+.recherche-container button {
+    margin-top: 50px;
+    padding: 14px 28px;
+    margin-left: 10px;
+
+    border-radius: 30px;
+    border: none;
+    background-color: #c94f6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.recherche-container button:hover {
+    background-color: #a93c56;
+}
+
+
 
 /* ===============================
    SECTION RECETTES

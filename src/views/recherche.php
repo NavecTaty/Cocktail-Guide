@@ -1,11 +1,14 @@
 <?php
 /**
+ * Recherche.php
  * PAGE DE RECHERCHE DE RECETTES
  */
 require_once __DIR__ . '/../models/recette.php';
+require_once __DIR__ . '/../models/aliment.php';
+require_once __DIR__ . '/../models/research.php';
 
 // Récupération des paramètres
-$include = $_GET['q'] ?? null;
+$include = $_GET['include'] ?? null;
 $exclude = $_GET['exclude'] ?? null;
 
 $recettes = [];
@@ -14,18 +17,18 @@ $titrePage = "Résultats de recherche";
 // Recherche inclusive
 if (!empty($include)) {
     $aliments = array_map('trim', explode(',', $include));
-    $recettes = rechercherRecettesInclusives($aliments);
+    $recettes = getRecettesInclusivesParNom($aliments);
     $titrePage = "Recettes contenant : " . htmlspecialchars($include);
 }
+
 
 // Recherche exclusive
 elseif (!empty($exclude)) {
     $aliments = array_map('trim', explode(',', $exclude));
-    $recettes = rechercherRecettesExclusives($aliments);
+    $recettes = getRecettesExclusivesParNom($aliments);
     $titrePage = "Recettes sans : " . htmlspecialchars($exclude);
 }
 ?>
-
 <main class="recettes" style="margin-top:20px;">
 
     <h2><?= $titrePage ?></h2>
