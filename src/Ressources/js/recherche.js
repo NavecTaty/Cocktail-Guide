@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initRecherche("exclude-input", "exclude-suggestions");
 
     /**
-     * 🔑 Synchronisation AVANT submit
+     
      * Copie les valeurs visibles vers les champs hidden
      */
     const form = document.getElementById("form-recherche");
