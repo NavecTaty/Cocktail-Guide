@@ -62,7 +62,7 @@ function getRecettePhoto($titre) {
     if(!file_exists($chemin)){
         return null;
     }
-    return "Ressources/Photos/" . $nom ;
+    return "/Cocktail-guide/src/Ressources/Photos/" . $nom ;
 }
 
 /**
