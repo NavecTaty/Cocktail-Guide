@@ -18,7 +18,8 @@ $pagesAutorisees = [
     'deconnexion',
     'favoris',
     'favoris_action',
-    'recherche'
+    'recherche',
+    'recette'
     
 ];
 

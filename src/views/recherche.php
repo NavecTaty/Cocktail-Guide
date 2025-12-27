@@ -62,13 +62,13 @@ if (!empty($includeAliments) || !empty($excludeAliments)) {
                 ?>
 
                 <div class="recette-card">
+                    <a href="index.php?page=recette&id=<?= $r['id_recette'] ?>" class="recette-link">
+                        <img src="<?= htmlspecialchars($image) ?>"
+                            alt="Photo <?= htmlspecialchars($r['titre']) ?>"
+                            onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
 
-                    <img src="<?= htmlspecialchars($image) ?>"
-                         alt="Photo <?= htmlspecialchars($r['titre']) ?>"
-                         onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
-
-                    <h4><?= htmlspecialchars($r['titre']) ?></h4>
-
+                        <h4><?= htmlspecialchars($r['titre']) ?></h4>
+                    </a>
                     <p><?= htmlspecialchars($apercu) ?>...</p>
 
                 </div>
