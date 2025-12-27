@@ -28,7 +28,7 @@ if (!in_array($page, $pagesAutorisees)) {
 
 //gestion de l'ajout d'un favoris
 if($page === 'favoris_action'){
-    require_once __DIR__ . '/models/recettesFavorites.php';
+    require_once __DIR__ . '/src/models/recettesFavorites.php';
     
     //traitement si id_recette >= 0 
         if (isset($_POST['id_recette']) && ctype_digit((string)$_POST['id_recette'])) {
@@ -58,16 +58,16 @@ if($page === 'favoris_action'){
 
 }
 // HEADER GLOBAL
-include __DIR__ . '/include/header.php';?>
+include __DIR__ . '/src/include/header.php';?>
 
 <main class="page-content">
     <?php 
 
     //Les vues
-    require_once __DIR__ . '/views/' . $page . '.php';
+    require_once __DIR__ . '/src/views/' . $page . '.php';
      ?>
 </main>
 <?php
 // FOOTER GLOBAL
-include __DIR__ . '/include/footer.php';
+include __DIR__ . '/src/include/footer.php';
 ?>
