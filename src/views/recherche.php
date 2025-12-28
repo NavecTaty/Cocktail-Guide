@@ -28,7 +28,7 @@ $recettes = [];
 if (!empty($includeAliments) || !empty($excludeAliments)) {
 
     //fonction combinée du modèle
-    $recettes = rechercherRecettesCombinees(
+    $recettes = rechercherRecettesAvecScore(
         $includeAliments,
         $excludeAliments
     );
@@ -49,8 +49,14 @@ if (!empty($includeAliments) || !empty($excludeAliments)) {
 
     <h2><?= $titrePage ?></h2>
 
+    <p class="info-recherche">
+        Les recettes sont classées selon leur degré de correspondance avec votre recherche.
+    </p>
+
     <?php if (empty($recettes)): ?>
-        <p class="aucune-recette">Aucune recette ne correspond à votre recherche.</p>
+        <p class="aucune-recette">
+            Aucune recette ne correspond à votre recherche.
+        </p>
     <?php else: ?>
 
         <div class="recettes-grille">
@@ -59,19 +65,38 @@ if (!empty($includeAliments) || !empty($excludeAliments)) {
                 <?php
                     $image = getRecettePhoto($r['titre']);
                     $apercu = mb_substr($r['preparation'], 0, 130);
+                    $score  = $r['score'] ?? 0;
                 ?>
 
-                <div class="recette-card">
+                <div class="recette-card <?= $score < 100 ? 'approx' : 'exact' ?>">
+
+                    <!-- Badge score -->
+                    <div class="score-badge">
+                        <?= $score ?>%
+                    </div>
+
                     <a href="index.php?page=recette&id=<?= $r['id_recette'] ?>" class="recette-link">
                         <img src="<?= htmlspecialchars($image) ?>"
-                            alt="Photo <?= htmlspecialchars($r['titre']) ?>"
-                            onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
+                             alt="Photo <?= htmlspecialchars($r['titre']) ?>"
+                             onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
 
                         <h4><?= htmlspecialchars($r['titre']) ?></h4>
                     </a>
+
                     <p><?= htmlspecialchars($apercu) ?>...</p>
 
+                    <?php if ($score < 100): ?>
+                        <span class="approx-label">
+                            Correspondance partielle
+                        </span>
+                    <?php else: ?>
+                        <span class="exact-label">
+                            Correspondance exacte
+                        </span>
+                    <?php endif; ?>
+
                 </div>
+
             <?php endforeach; ?>
 
         </div>
@@ -79,4 +104,5 @@ if (!empty($includeAliments) || !empty($excludeAliments)) {
     <?php endif; ?>
 
 </main>
+
 
