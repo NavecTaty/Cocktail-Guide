@@ -32,7 +32,7 @@ foreach ($recettes as $r) {
 
         <input type="hidden" name="page" value="recherche">
 
-        <!-- 🔹 WRAPPER FLEX -->
+        <!--  WRAPPER FLEX -->
         <div class="champs-ligne">
 
             <div class="champ-recherche">
