@@ -27,12 +27,8 @@ $recettes = [];
 
 if (!empty($includeAliments) || !empty($excludeAliments)) {
 
-    //fonction combinée du modèle
-    $recettes = rechercherRecettesAvecScore(
-        $includeAliments,
-        $excludeAliments
-    );
-
+    //la ligne que j'ai rajouté
+    $recettes = rechercherRecettesAvecScore( $includeAliments, $excludeAliments );
     // Construction du titre
     if (!empty($includeAliments)) {
         $titrePage .= " avec " . htmlspecialchars(implode(', ', $includeAliments));
