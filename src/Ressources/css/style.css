@@ -1,6 +1,4 @@
-/* ===============================
-   LAYOUT GLOBAL
-================================ */
+/*LAYOUT GLOBAL */
 
 html, body {
     height: 100%;
@@ -22,145 +20,25 @@ body {
     flex-direction: column;
 }
 
-/* ===============================
-   SECTION RECHERCHE
-================================ */
+/* SECTION RECHERCHE */
 
-/* Wrapper pleine largeur */
 .recherche-wrapper {
-    width: 100%;
     display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
+    justify-content: center; 
+    gap: 20px; /
 }
 
-/* Container plein écran horizontal */
 .recherche-container {
-    width: 100%;
-    min-height: 280px;
-
-    background-image: url('../Photos/cocktails.jpg');
-    background-size: cover;        /* remplit toute la largeur */
-    background-position: center;
-    background-repeat: no-repeat;
-
-    padding: 40px 20px;
-    text-align: center;
-
-    position: relative;
+    background-image: url('../Photos/cocktails.jpg'); 
+    background-size: cover;     
+    background-position: center; 
+    padding: 50px;               
+    text-align: center;           
+    flex: 1;         
+    min-width: 300px;  
 }
 
-/* Voile pour lisibilité */
-.recherche-container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(245, 230, 232, 0.55); /* moins transparent */
-    z-index: 0;
-}
-
-/* Form au-dessus */
-.recherche-container form {
-    position: relative;
-    z-index: 1;
-
-    max-width: 900px;   
-    margin: 0 auto;
-}
-
-/* Champ de recherche */
-.recherche-container input[type="text"] {
-    width: 70%;
-    max-width: 600px;
-
-    padding: 14px 18px;
-    border-radius: 30px;
-    border: 1px solid #d8b6b6;
-    font-size: 16px;
-}
-
-/* Bouton */
-.recherche-container button {
-    margin-top: 50px;
-    padding: 14px 28px;
-    margin-left: 10px;
-
-    border-radius: 30px;
-    border: none;
-    background-color: #c94f6d;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.recherche-container button:hover {
-    background-color: #a93c56;
-}
-/* ===============================
-   SECTION LISTE DE SUGGESTION 
-================================ */
-
-/* Liste des suggestions */
-.suggestions {
-    position: absolute;
-    top: 100%;
-    left: 0;
-
-    width: 100%;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin-top: 6px;
-    padding: 0;
-    list-style: none;
-
-    max-height: 200px;
-    overflow-y: auto;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    z-index: 1000;
-}
-
-
-/* Élément de suggestion */
-.suggestion-item {
-    padding: 10px 14px;
-    cursor: pointer;
-    font-size: 14px;
- 
-}
-
-/* Survol */
-.suggestion-item:hover {
-    background-color: #f3f3f3;
-}
-
-/* Optionnel : sélection "active" */
-.suggestion-item.active {
-    background-color: #e0e0e0;
-}
-
-.champs-ligne {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-}
-
-.champ-recherche {
-    position: relative;
-    width: 45%;
-    max-width: 400px;
-    min-width: 260px;
-}
-
-
-
-/* ===============================
-   SECTION RECETTES
-================================ */
+/*SECTION RECETTES */
 
 .quelques-recettes {
     max-width: 1000px;
@@ -181,8 +59,9 @@ body {
 /* grille responsive */
 .quelques-recettes-grille {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+   grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    justify-content: center;
 }
 
 /* carte recette */
@@ -220,9 +99,7 @@ body {
     line-height: 1.4;
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
+/* RESPONSIVE */
 
 @media (max-width: 600px) {
     .quelques-recettes h2 {
@@ -233,9 +110,7 @@ body {
         height: 160px;
     }
 }
-/* =========================
-   FAVORIS - BOUTON
-   ========================= */
+/* FAVORIS */
 
 .favori-form {
     text-align: right;

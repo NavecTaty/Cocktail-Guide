@@ -49,10 +49,6 @@ if (!empty($includeAliments) || !empty($excludeAliments)) {
 
     <h2><?= $titrePage ?></h2>
 
-    <p class="info-recherche">
-        Les recettes sont classées selon leur degré de correspondance avec votre recherche.
-    </p>
-
     <?php if (empty($recettes)): ?>
         <p class="aucune-recette">Aucune recette ne correspond à votre recherche.</p>
     <?php else: ?>
@@ -63,41 +59,19 @@ if (!empty($includeAliments) || !empty($excludeAliments)) {
                 <?php
                     $image = getRecettePhoto($r['titre']);
                     $apercu = mb_substr($r['preparation'], 0, 130);
-
-                    $matched = $r['matched'] ?? 0;
-                    $total   = $r['total'] ?? 1;
-                    $score   = $r['score'] ?? 0;
-
-                    $pourcentage = round(($matched / $total) * 100);
                 ?>
 
-                <div class="recette-card <?= $pourcentage < 100 ? 'approx' : 'exact' ?>">
+                <div class="recette-card">
+                    <a href="index.php?page=recette&id=<?= $r['id_recette'] ?>" class="recette-link">
+                        <img src="<?= htmlspecialchars($image) ?>"
+                            alt="Photo <?= htmlspecialchars($r['titre']) ?>"
+                            onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
 
-                    <!-- Badge score -->
-                    <div class="score-badge">
-                        <?= $pourcentage ?>%
-                    </div>
-
-                    <img src="<?= htmlspecialchars($image) ?>"
-                         alt="Photo <?= htmlspecialchars($r['titre']) ?>"
-                         onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
-
-                    <h4><?= htmlspecialchars($r['titre']) ?></h4>
-
+                        <h4><?= htmlspecialchars($r['titre']) ?></h4>
+                    </a>
                     <p><?= htmlspecialchars($apercu) ?>...</p>
 
-                    <small class="details">
-                        <?= $matched ?> / <?= $total ?> ingrédients correspondants
-                    </small>
-
-                    <?php if ($pourcentage < 100): ?>
-                        <span class="approx-label">
-                            Correspondance partielle
-                        </span>
-                    <?php endif; ?>
-
                 </div>
-
             <?php endforeach; ?>
 
         </div>
@@ -105,5 +79,4 @@ if (!empty($includeAliments) || !empty($excludeAliments)) {
     <?php endif; ?>
 
 </main>
-
 

@@ -96,11 +96,12 @@ foreach ($recettes as $r) {
                             <?= $estFavori ? '★' : '☆' ?>
                         </button>
                 </form>
-                <img src="<?= htmlspecialchars($r['image'], ENT_QUOTES) ?>"
-                    alt="Photo <?= htmlspecialchars($r['titre'], ENT_QUOTES) ?>">
+                <a href="index.php?page=recette&id=<?= $r['id_recette'] ?>" class="recette-link">
+                    <img src="<?= htmlspecialchars($r['image'], ENT_QUOTES) ?>"
+                        alt="Photo <?= htmlspecialchars($r['titre'], ENT_QUOTES) ?>">
 
-                <h4><?= htmlspecialchars($r['titre'], ENT_QUOTES) ?></h4>
-
+                    <h4><?= htmlspecialchars($r['titre'], ENT_QUOTES) ?></h4>
+                </a>
                 <p><?= htmlspecialchars($apercu, ENT_QUOTES) ?>...</p>
             </div>
         <?php endforeach; ?>

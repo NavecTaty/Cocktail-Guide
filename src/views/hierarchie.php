@@ -97,12 +97,13 @@ if (!isset($_GET['id'])) {
                             <?= $estFavori ? '★' : '☆' ?>
                         </button>
                 </form>
-
+                <a href="index.php?page=recette&id=<?= $r['id_recette'] ?>" class="recette-link">
                 <img src="<?= $image ?>"
                      alt="Photo <?= htmlspecialchars($r['titre']) ?>"
                      onerror="this.onerror=null;this.src='/Cocktail-Guide/src/Ressources/Photos/defaut.jpg';">
 
                 <h4><?= htmlspecialchars($r['titre']) ?></h4>
+                </a>
 
                 <p><?= htmlspecialchars($apercu) ?>...</p>
             
