@@ -6,6 +6,8 @@
 require_once __DIR__ . '/../models/recette.php';
 require_once __DIR__ . '/../models/aliment.php';
 require_once __DIR__ . '/../models/research.php';
+require_once __DIR__ . '/../models/recettesFavorites.php';
+
 
 // ===============================
 // Récupération des paramètres
@@ -61,6 +63,7 @@ if (!empty($includeAliments) || !empty($excludeAliments)) {
                 <?php
                     $image = getRecettePhoto($r['titre']);
                     $apercu = mb_substr($r['preparation'], 0, 130);
+                    $estFavori = estFavoriGlobal($r['id_recette']);
                     $score  = $r['score'] ?? 0;
                 ?>
 
@@ -70,7 +73,16 @@ if (!empty($includeAliments) || !empty($excludeAliments)) {
                     <div class="score-badge">
                         <?= $score ?>%
                     </div>
-
+                    <!---- icone pour marquer/retirer un favori  ---->
+                    <form method="post" action="index.php?page=favoris_action" class="favori-form">
+                        <input type="hidden" name="id_recette" value="<?= $r['id_recette'] ?>">
+                         <input type="hidden" name="action" value="<?= $estFavori ? 'supprimer' : 'ajouter' ?>">
+                         <button type="submit"
+                             class="favori-btn <?= $estFavori ? 'actif' : 'inactif' ?>"
+                            aria-label="<?= $estFavori ? 'Retirer des favoris' : 'Ajouter aux favoris' ?>">
+                            <?= $estFavori ? '★' : '☆' ?>
+                        </button>
+                </form>
                     <a href="index.php?page=recette&id=<?= $r['id_recette'] ?>" class="recette-link">
                         <img src="<?= htmlspecialchars($image) ?>"
                              alt="Photo <?= htmlspecialchars($r['titre']) ?>"

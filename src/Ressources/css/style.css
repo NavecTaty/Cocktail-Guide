@@ -327,3 +327,68 @@ body {
 .recette-card-bis:hover {
     transform: translateY(-6px) scale(1.01);
 }
+
+/*Affichage du score*/
+
+/* Carte avec score exact */
+.recette-card.exact {
+    border: 2px solid #8bc34a;
+    box-shadow: 0 6px 16px rgba(139, 195, 74, 0.25);
+}
+
+/* Carte avec score approximatif */
+.recette-card.approx {
+    border: 2px dashed #f1c40f;
+}
+
+/* Badge score */
+.score-badge {
+    position: relative;
+    top: 10px;
+    right: 10px;
+
+    background-color: #2c3e50;
+    color: #fff;
+
+    font-size: 0.85rem;
+    font-weight: bold;
+
+    padding: 6px 10px;
+    border-radius: 20px;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+/* Couleur badge selon le score */
+.recette-card.exact .score-badge {
+    background-color: #8bc34a;
+}
+
+.recette-card.approx .score-badge {
+    background-color: #f1c40f;
+    color: #333;
+}
+
+/* Labels texte */
+.exact-label,
+.approx-label {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Label exact */
+.exact-label {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Label partiel */
+.approx-label {
+    background-color: #fff8e1;
+    color: #8a6d00;
+}
