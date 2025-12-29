@@ -34,7 +34,7 @@ if (!isset($_GET['id'])) {
 </nav>
 <?php endif; ?>
 
-<div class="page-hierarchie" style="display:flex; gap:20px; margin-top:15px;">
+<div class="page-hierarchie" style="display:flex; gap:10px; margin-top:15px;">
    <?php $menuHierarchie = [];
         if ($alimentCourant) {
         // Parents + courant

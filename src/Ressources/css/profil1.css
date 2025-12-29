@@ -50,3 +50,8 @@
     background-color: #c79aa3; /* rose foncé au survol */
 }
 
+input:focus {
+    outline: none;
+    border-color: var(--rose-fonce);
+    box-shadow: 0 0 0 2px rgba(199,154,163,0.4);
+}

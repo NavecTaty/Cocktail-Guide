@@ -2,9 +2,20 @@
    LAYOUT GLOBAL
 ================================ */
 
+/* j'ajoute ca */
+:root {
+    --rose-clair: #f5e6e8;
+    --rose-moyen: #d8b6b6;
+    --rose-fonce: #c79aa3;
+    --texte-fonce: #5a3e36;
+    --fond-blanc: #ffffff;
+    --ombre-douce: 0 4px 12px rgba(0,0,0,0.1);
+}
+/* j'ajoute ca */
 html, body {
     height: 100%;
     margin: 0;
+    overflow-x: hidden;
 }
 
 body {
@@ -12,14 +23,18 @@ body {
     flex-direction: column;
     width: 100%;
     font-family: Arial, sans-serif;
+    min-height: 100vh;
 }
 
 /* zone centrale extensible */
 .page-content {
     flex: 1;
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
+   
 }
 
 /* ===============================
@@ -38,7 +53,7 @@ body {
 /* Container plein écran horizontal */
 .recherche-container {
     width: 100%;
-    min-height: 280px;
+    min-height: 200px;
 
     background-image: url('../Photos/cocktails.jpg');
     background-size: cover;        /* remplit toute la largeur */
@@ -79,6 +94,11 @@ body {
     border: 1px solid #d8b6b6;
     font-size: 16px;
 }
+.recherche-container input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(216, 182, 182, 0.6);
+}
+
 
 /* Bouton */
 .recherche-container button {
@@ -120,6 +140,14 @@ body {
 
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     z-index: 1000;
+}
+.suggestions {
+    animation: fadeIn 0.15s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 
@@ -288,4 +316,14 @@ body {
     font-size: 26px;
     margin-bottom: 35px;
     color: #2b2b2b;
+}
+
+.recette-card,
+.recette-card-bis {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.recette-card:hover,
+.recette-card-bis:hover {
+    transform: translateY(-6px) scale(1.01);
 }

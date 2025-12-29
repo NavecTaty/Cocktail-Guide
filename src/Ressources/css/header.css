@@ -4,7 +4,7 @@
     background-color: #f5e6e8;
     color: #5a3e36;
     text-align: center;
-    padding: 20px;
+    padding: 10px 0;
     border-bottom: 2px solid #d8b6b6;
 }
 
@@ -43,4 +43,23 @@
 
 .contenu {
     flex: 1;   
+}
+
+.header nav a {
+    position: relative;
+}
+
+.header nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--rose-fonce);
+    transition: width 0.3s ease;
+}
+
+.header nav a:hover::after {
+    width: 100%;
 }

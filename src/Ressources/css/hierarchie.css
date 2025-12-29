@@ -4,6 +4,7 @@
     background-color: #f9f9f9;
     padding: 15px;
     border-radius: 6px;
+   /* max-height: 100%;*/
 }
 
 /* BREADCRUMB */
@@ -87,6 +88,11 @@ aside.menu ul {
     color: #5a3e36;
 }
 
+.menu-hierarchie li.actif {
+    background-color: rgba(216,182,182,0.2);
+    border-radius: 20px;
+    padding: 10px 10px;
+}
 
 aside.menu a {
     text-decoration: none;

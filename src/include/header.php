@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Cocktail Guide</title>
-   <link rel="stylesheet" href="/Cocktail-Guide/src/Ressources/css/style.css">
+    
+    <link rel="stylesheet" href="/Cocktail-Guide/src/Ressources/css/style.css">
     <link rel="stylesheet" href="/Cocktail-Guide/src/Ressources/css/header.css">
     <link rel="stylesheet" href="/Cocktail-Guide/src/Ressources/css/footer.css">
      <link rel="stylesheet" href="/Cocktail-Guide/src/Ressources/css/texte.css">
