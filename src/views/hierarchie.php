@@ -35,14 +35,30 @@ if (!isset($_GET['id'])) {
 <?php endif; ?>
 
 <div class="page-hierarchie" style="display:flex; gap:10px; margin-top:15px;">
-   <?php $menuHierarchie = [];
+  <?php
+        $menu = [];
+
+        // 1. Parents + courant
         if ($alimentCourant) {
-        // Parents + courant
-         $menuHierarchie = getCheminHierarchique($alimentCourant['id_aliment']);
+            foreach (getCheminHierarchique($alimentCourant['id_aliment']) as $a) {
+                $menu[$a['id_aliment']] = [
+                    'data' => $a,
+                    'niveau' => 'actif'
+                ];
+            }
         }
-        // Sous-catégories
-        $menuEnfants = $sousCategories;
-    ?>
+
+        // 2. Enfants directs
+        foreach ($sousCategories as $enfant) {
+            if (!isset($menu[$enfant['id_aliment']])) {
+                $menu[$enfant['id_aliment']] = [
+                    'data' => $enfant,
+                    'niveau' => 'enfant'
+                ];
+            }
+        }
+?>
+
     <aside class="menu" style="width:260px;">
         <h3>
             <?= $alimentCourant ? "Sous-catégories de " . htmlspecialchars($alimentCourant['nom']) : "Catégories" ?>
@@ -52,22 +68,15 @@ if (!isset($_GET['id'])) {
             <p>Aucune sous-catégorie.</p>
         <?php else: ?>
          <ul class="menu-hierarchie">
-                <?php foreach ($menuHierarchie as $niveau => $a): ?>
-                 <li class="niveau-<?= $niveau ?> actif">
-                    <a href="index.php?page=hierarchie&id=<?= $a['id_aliment'] ?>">
-                         <?= htmlspecialchars($a['nom']) ?>
+            <?php foreach ($menu as $item): ?>
+                <li class="<?= $item['niveau'] ?>">
+                    <a href="index.php?page=hierarchie&id=<?= $item['data']['id_aliment'] ?>">
+                        <?= htmlspecialchars($item['data']['nom']) ?>
                     </a>
-                 </li>
-                <?php endforeach; ?>
-
-                 <?php foreach ($menuEnfants as $enfant): ?>
-                  <li class="niveau-<?= count($menuHierarchie) ?>">
-                    <a href="index.php?page=hierarchie&id=<?= $enfant['id_aliment'] ?>">
-                         <?= htmlspecialchars($enfant['nom']) ?>
-                     </a>
-                 </li>
-                 <?php endforeach; ?>
+                </li>
+            <?php endforeach; ?>
         </ul>
+
 
         <?php endif; ?>
     </aside>

@@ -15,17 +15,17 @@ try{
                 values(?,?,?,?,?,?,?,?,?,?,?)");
     $stmtUser = $access->prepare($userSQL);
     return $stmtUser->execute([
-        $donnees['nom'],
-        $donnees['prenom'],
+        $donnees['nom'] ?? null,
+        $donnees['prenom'] ?? null,
         password_hash($donnees['motdepasse'],PASSWORD_DEFAULT),
         $donnees['login'],
-        $donnees['sexe'],
-        $donnees['email'],
-        $donnees['ddn'],
-        $donnees['adresse'],
-        $donnees['cp'],
-        $donnees['ville'],
-        $donnees['telephone']
+        $donnees['sexe'] ?? null,
+        $donnees['email'] ?? null,
+        $donnees['ddn'] ?? null,
+        $donnees['adresse']?? null,
+        $donnees['cp'] ?? null,
+        $donnees['ville'] ?? null,
+        $donnees['telephone'] ?? null
     ]);
 }catch(PDOException $e) {
         //duplicate key (MySQL)
@@ -36,9 +36,9 @@ try{
                 return ['error' => 'LOGIN_EXISTS'];
             }
 
-            if (str_contains($e->getMessage(), 'addr_mail')) {
+           /*f (str_contains($e->getMessage(), 'addr_mail')) {
                 return ['error' => 'EMAIL_EXISTS'];
-            }
+            }*/
         }
 
         return ['error' => 'DB_ERROR'];
@@ -72,16 +72,16 @@ function modifierUtilisateur($id, $donnees) {
     global $access;
 
     $params = [
-        $donnees['nom'],
-        $donnees['prenom'],
-        $donnees['sexe'],
-        $donnees['email'],
-        $donnees['login'],
-        $donnees['ddn'],
-        $donnees['adresse'],
-        $donnees['cp'],
-        $donnees['ville'],
-        $donnees['telephone'],
+        $donnees['nom'] ?? null,
+        $donnees['prenom'] ?? null,
+        $donnees['sexe'] ?? null,
+        $donnees['email'] ?? null,
+        $donnees['login'] ?? null,
+        $donnees['ddn'] ?? null,
+        $donnees['adresse'] ?? null,
+        $donnees['cp'] ?? null, 
+        $donnees['ville'] ?? null, 
+        $donnees['telephone'] ?? null,
         $id
     ];
 

@@ -95,9 +95,9 @@ if (isset($_POST['submit'])) {
                 case 'LOGIN_EXISTS':
                     $erreurs[] = "Ce login est déjà utilisé.";
                     break;
-                case 'EMAIL_EXISTS':
+                /* 'EMAIL_EXISTS':
                     $erreurs[] = "Cette adresse e-mail est déjà utilisée.";
-                    break;
+                    break;*/
                 default:
                     $erreurs[] = "Erreur technique. Réessayez plus tard.";
             }

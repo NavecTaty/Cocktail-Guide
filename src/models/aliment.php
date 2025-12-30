@@ -84,21 +84,43 @@ function getSuperCategories($id_aliment){
    
 }
 /**
+ * récupère la hierarchie complete
+ */
+function getHierarchieComplete() {
+    global $access;
+
+    $sql = "
+        SELECT h.id_super_categorie, h.id_sous_categorie
+        FROM hierarchie h
+    ";
+
+    $rows = $access->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+    $tree = [];
+    foreach ($rows as $r) {
+        $tree[$r['id_super_categorie']][] = $r['id_sous_categorie'];
+    }
+
+    return $tree;
+}
+
+/**
  * Récupère la hierarchie d'un aliment
  */
 function getCheminHierarchique($id_Aliment) {
-    $chemin = [];
+     $chemin = [];
+    $visites = [];
 
     $courant = getAlimentById($id_Aliment);
 
-    while ($courant) {
+    while ($courant && !isset($visites[$courant['id_aliment']])) {
+        $visites[$courant['id_aliment']] = true;
         array_unshift($chemin, $courant);
 
         $parents = getSuperCategories($courant['id_aliment']);
         if (empty($parents)) {
             break;
         }
-        // On prend le premier parent
         $courant = $parents[0];
     }
 
@@ -107,20 +129,37 @@ function getCheminHierarchique($id_Aliment) {
 /**
  * Récupère toutes les sous-catégories 
  */
-function getToutesLesSousCategories($idAliment) {
-    $resultat = [];
-    $sous = getSousCategories($idAliment);
+function getToutesLesSousCategories($idAliment, $hierarchie = null, &$visites = []) {
 
-    foreach ($sous as $a) {
-        $resultat[] = $a['nom'];
-        $resultat = array_merge(
-            $resultat,
-            getToutesLesSousCategories($a['id_aliment'])
-        );
+    if ($hierarchie === null) {
+        $hierarchie = getHierarchieComplete();
+    }
+
+    if (isset($visites[$idAliment])) {
+        return []; // stop boucle infinie
+    }
+    $visites[$idAliment] = true;
+
+    $resultat = [];
+
+    if (!isset($hierarchie[$idAliment])) {
+        return [];
+    }
+
+    foreach ($hierarchie[$idAliment] as $idSous) {
+        $aliment = getAlimentById($idSous);
+        if ($aliment) {
+            $resultat[] = $aliment['nom'];
+            $resultat = array_merge(
+                $resultat,
+                getToutesLesSousCategories($idSous, $hierarchie, $visites)
+            );
+        }
     }
 
     return $resultat;
 }
+
 /**
  * Récupère toutes les recettes pour un aliment et ses descendants
  */
